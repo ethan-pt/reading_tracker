@@ -1,3 +1,6 @@
+.dockerignore
 .venv
 .gitignore
+.env
+cloud-sql-proxy.exe
 __pycache__
