@@ -1,3 +1,5 @@
+import datetime
+
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
@@ -40,3 +42,27 @@ class ReaderRegister(FormView):
         
         return super(ReaderRegister, self).get(*args, **kwargs)
     
+
+class ReaderList(LoginRequiredMixin, ListView):
+    model = Books
+    context_object_name = 'books'
+
+    def check_year(book):
+        if book.complete == True and book.date.year == datetime.date.today().year:
+            return True
+        
+        return False
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['books'] = context['books'].filter(user=self.request.user)
+        context['finished'] = context['books'].filter(self.check_year)
+
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            context['books'] = context['books'].filter(title__icontains=search_input)
+
+        context['search-input'] = search_input
+
+        return context
