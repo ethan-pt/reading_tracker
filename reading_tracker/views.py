@@ -1,7 +1,6 @@
 import datetime
 
 from django.views.generic.list import ListView
-from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.urls import reverse_lazy
 
@@ -45,7 +44,7 @@ class ReaderRegister(FormView):
 
 class ReaderList(LoginRequiredMixin, ListView):
     model = Books
-    context_object_name = 'books'
+    context_object_name = 'book'
 
     # filter function, returns list of books completed in current year
     def check_year(book):
@@ -68,3 +67,26 @@ class ReaderList(LoginRequiredMixin, ListView):
         context['search-input'] = search_input
 
         return context
+    
+
+class ReaderCreate(LoginRequiredMixin, CreateView):
+    model = Books
+    fields = ['title', 'description', 'total_pages', 'date']
+    success_url = reverse_lazy('reader')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+
+        return super(ReaderCreate, self).form_valid(form)
+
+
+class ReaderUpdate(LoginRequiredMixin, UpdateView):
+    model = Books
+    fields = ['title', 'description', 'complete', 'total_pages', 'current_page', 'date']
+    success_url = reverse_lazy('reader')
+
+
+class ReaderDelete(LoginRequiredMixin, DeleteView):
+    model = Books
+    context_object_name = 'book'
+    success_url = reverse_lazy('books')
