@@ -47,6 +47,7 @@ class ReaderList(LoginRequiredMixin, ListView):
     model = Books
     context_object_name = 'books'
 
+    # filter function, returns list of books completed in current year
     def check_year(book):
         if book.complete == True and book.date.year == datetime.date.today().year:
             return True
