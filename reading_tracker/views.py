@@ -49,9 +49,9 @@ class ReaderList(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['book'] = context['book'].filter(user=self.request.user)
-        context['finished'] = context['book'].filter(date__year=datetime.date.today().year)
+        context['finished'] = context['book'].filter(date_finished__year=datetime.date.today().year)
         context['finished_count'] = context['finished'].count()
-        
+
         # search function
         search_input = self.request.GET.get('search-area') or ''
         if search_input:
@@ -64,7 +64,7 @@ class ReaderList(LoginRequiredMixin, ListView):
 
 class ReaderCreate(LoginRequiredMixin, CreateView):
     model = Books
-    fields = ['title', 'description', 'total_pages', 'date']
+    fields = ['title', 'description', 'total_pages', 'date_started']
     success_url = reverse_lazy('reader')
 
     def form_valid(self, form):
@@ -75,7 +75,7 @@ class ReaderCreate(LoginRequiredMixin, CreateView):
 
 class ReaderUpdate(LoginRequiredMixin, UpdateView):
     model = Books
-    fields = ['title', 'description', 'complete', 'total_pages', 'current_page', 'date']
+    fields = ['title', 'description', 'complete', 'current_page', 'total_pages', 'date_started', 'date_finished']
     success_url = reverse_lazy('reader')
 
 
