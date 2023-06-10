@@ -2,5 +2,9 @@
 .venv
 .gitignore
 .env
-cloud-sql-proxy.exe
+cloud-sql-proxy.x64.exe
 __pycache__
+*.log
+*.pot
+*.pyc
+db.sqlite3
