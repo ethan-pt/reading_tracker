@@ -56,19 +56,19 @@ class ReaderList(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['books'] = context['books'].filter(user=self.request.user)
-        context['finished'] = context['books'].filter(self.check_year)
+        context['book'] = context['book'].filter(user=self.request.user)
+        context['finished'] = context['book'].filter(self.check_year)
         context['finished_count'] = context['finished'].count()
-        context['current_page'] = context['books']['current_page']
+        context['current_page'] = context['book']['current_page']
 
         # really stupid way to limit current page to total pages
-        if context['current_page'] > context['books']['total_pages']:
-            context['current_page'] = context['books']['total_pages']
+        if context['current_page'] > context['book']['total_pages']:
+            context['current_page'] = context['book']['total_pages']
 
         # search function
         search_input = self.request.GET.get('search-area') or ''
         if search_input:
-            context['books'] = context['books'].filter(title__icontains=search_input)
+            context['book'] = context['book'].filter(title__icontains=search_input)
 
         context['search-input'] = search_input
 
