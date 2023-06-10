@@ -46,18 +46,10 @@ class ReaderList(LoginRequiredMixin, ListView):
     model = Books
     context_object_name = 'book'
 
-    # filter function, returns list of books completed in current year
-    def check_year(book):
-        if book.complete == True and book.date.year == datetime.date.today().year:
-            return True
-        
-        return False
-
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['book'] = context['book'].filter(user=self.request.user)
-        context['finished'] = context['book'].filter(self.check_year)
+        context['finished'] = context['book'].filter(date__year=datetime.date.today().year)
         context['finished_count'] = context['finished'].count()
         context['current_page'] = context['book']['current_page']
 
