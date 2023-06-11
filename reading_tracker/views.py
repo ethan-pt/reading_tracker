@@ -82,4 +82,4 @@ class ReaderUpdate(LoginRequiredMixin, UpdateView):
 class ReaderDelete(LoginRequiredMixin, DeleteView):
     model = Books
     context_object_name = 'book'
-    success_url = reverse_lazy('books')
+    success_url = reverse_lazy('reader')
