@@ -13,3 +13,6 @@ class Books(models.Model):
     current_page = models.PositiveIntegerField(default=0)
     date_started = models.DateField(default=timezone.now, editable=True)
     date_finished = models.DateField(editable=True, blank=True, null=True)
+
+    class Meta:
+        ordering = ['-date_started']
