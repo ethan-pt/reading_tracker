@@ -58,7 +58,7 @@ steps:
       ]
 
 substitutions:
-  _INSTANCE_NAME: portfolio-instance
+  _INSTANCE_NAME: reader-instance
   _REGION: us-central1
   _SERVICE_NAME: reader-service
   _SECRET_SETTINGS_NAME: django_settings_reader
