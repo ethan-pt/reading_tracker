@@ -6,7 +6,6 @@
 
 * [Technologies Used](#technologies-used)
 * [Features](#features)
-* [Screenshots](#screenshots)
 * [Setup](#setup)
 * [To Do](#to-do)
 * [Contact](#contact)
@@ -16,10 +15,10 @@
 * Python 3.10.1
 * Django
 * Google Cloud Platform (GCP)
-    * Cloud Run
-    * Cloud SQL
-    * Cloud Storage Buckets
-    * Cloud Secrets
+  * Cloud Run
+  * Cloud SQL
+  * Cloud Storage Buckets
+  * Cloud Secrets
 * Docker
 * Gunicorn
 
@@ -27,10 +26,6 @@
 
 * Track number of books read in a year
 * Track current page
-
-## Screenshots
-
-![Example screenshot](./docs/img/screenshot.png)
 
 ## Setup
 
@@ -40,7 +35,6 @@
 
 * Prevent current page from exceeding total pages
 * Sort books by column headers
-* Add screenshot once redeployed
 
 ## Contact
 
