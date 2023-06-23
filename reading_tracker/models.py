@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.core.exceptions import ValidationError
 
 
 
@@ -16,3 +17,13 @@ class Books(models.Model):
 
     class Meta:
         ordering = ['-date_started']
+
+    def clean(self):
+        if self.current_page > self.total_pages:
+            raise ValidationError('Current page cannot exceed total pages.')
+        
+        if self.date_started > self.date_finished:
+            raise ValidationError('Date started cannot exceed date finished.')
+        
+        if self.current_page != self.total_pages and self.complete:
+            raise ValidationError('Make sure current page reflects book status.')
