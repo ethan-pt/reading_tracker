@@ -19,11 +19,12 @@ class Books(models.Model):
         ordering = ['-date_started']
 
     def clean(self):
-        if self.current_page > self.total_pages:
-            raise ValidationError('Current page cannot exceed total pages.')
+        if self.current_page:
+            if self.current_page > self.total_pages:
+                raise ValidationError('Current page cannot exceed total pages.')
         
-        if self.date_started > self.date_finished:
+            if self.current_page != self.total_pages and self.complete:
+                raise ValidationError('Make sure current page reflects book status.')
+        
+        if self.date_finished and self.date_started > self.date_finished:
             raise ValidationError('Date started cannot exceed date finished.')
-        
-        if self.current_page != self.total_pages and self.complete:
-            raise ValidationError('Make sure current page reflects book status.')
