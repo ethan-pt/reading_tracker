@@ -35,7 +35,8 @@
 
 * ~~Prevent current page from exceeding total pages~~
 * Sort books by column headers
-* Auto add finished date when finished bool is true
+* Auto add date finished when complete bool is true
+* Swap model-level clean to be a field-level clean
 
 ## Contact
 
