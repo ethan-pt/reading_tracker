@@ -33,8 +33,9 @@
 
 ## To Do
 
-* Prevent current page from exceeding total pages
+* ~~Prevent current page from exceeding total pages~~
 * Sort books by column headers
+* Auto add finished date when finished bool is true
 
 ## Contact
 
