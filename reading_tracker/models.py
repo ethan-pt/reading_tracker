@@ -20,3 +20,9 @@ class ReadingStatus(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)
+
+class ReadingProgress(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    current_page = models.PositiveIntegerField(help_text="Page number for physical/digital books, percentage for audiobooks")
+    last_updated = models.DateTimeField(auto_now=True)
