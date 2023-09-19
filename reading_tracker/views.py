@@ -49,6 +49,7 @@ class ReaderList(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['book'] = context['book'].filter(user=self.request.user)
+        context['current_year'] = datetime.date.today().year
         context['finished_count'] = context['book'].filter(date_finished__year=datetime.date.today().year).count()
 
         # search function
