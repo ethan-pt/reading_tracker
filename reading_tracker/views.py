@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
-from .models import Books
+from .models import Book, ReadingStatus, ReadingProgress
 
 
 
@@ -43,7 +43,7 @@ class ReaderRegister(FormView):
     
 
 class ReaderList(LoginRequiredMixin, ListView):
-    model = Books
+    model = Book
     context_object_name = 'book'
 
     def get_context_data(self, **kwargs):
@@ -63,7 +63,7 @@ class ReaderList(LoginRequiredMixin, ListView):
     
 
 class ReaderCreate(LoginRequiredMixin, CreateView):
-    model = Books
+    model = Book
     fields = ['title', 'description', 'total_pages', 'date_started']
     success_url = reverse_lazy('reader')
 
@@ -74,12 +74,12 @@ class ReaderCreate(LoginRequiredMixin, CreateView):
 
 
 class ReaderUpdate(LoginRequiredMixin, UpdateView):
-    model = Books
+    model = Book
     fields = ['title', 'description', 'complete', 'current_page', 'total_pages', 'date_started', 'date_finished']
     success_url = reverse_lazy('reader')
 
 
 class ReaderDelete(LoginRequiredMixin, DeleteView):
-    model = Books
+    model = Book
     context_object_name = 'book'
     success_url = reverse_lazy('reader')
