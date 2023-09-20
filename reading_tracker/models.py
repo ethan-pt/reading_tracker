@@ -33,7 +33,7 @@ class ReadingProgress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     tracking_type = models.CharField(max_length=20, choices=PROGRESS_CHOICES)
-    current_percent = models.PositiveIntegerField(validators=[MaxValueValidator(1)], blank=True)
+    current_percent = models.PositiveIntegerField(validators=[MaxValueValidator(100)], blank=True)
     current_page = models.PositiveIntegerField(blank=True)
     current_time = models.DurationField(blank=True)
     last_updated = models.DateTimeField(auto_now=True)
