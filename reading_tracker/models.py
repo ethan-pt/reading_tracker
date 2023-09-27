@@ -13,6 +13,7 @@ class Book(models.Model):
 
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
+    publisher = models.CharField(max_length=255)
     isbn = models.CharField(max_length=13, unique=True)
     book_type = models.CharField(choices=BOOK_TYPE_CHOICES)
     length_pages = models.PositiveIntegerField(blank=True)
