@@ -6,9 +6,9 @@ from django.core.validators import MaxValueValidator
 
 class Book(models.Model):
     BOOK_TYPE_CHOICES = [
-        ('paper book', 'paper book'),
+        ('paper-book', 'paper book'),
         ('e-book', 'e-book'),
-        ('audio book', 'audio book')
+        ('audio-book', 'audio book')
     ]
 
     title = models.CharField(max_length=255)
@@ -20,10 +20,10 @@ class Book(models.Model):
 
 class ReadingStatus(models.Model):
     STATUS_CHOICES = [
-        ('Reading', 'Reading'),
-        ('Finished!', 'Finished!'),
-        ('Gave Up', 'Gave Up'),
-        ('Want to Read', 'Want to Read'),
+        ('reading', 'Reading'),
+        ('finished', 'Finished!'),
+        ('gave-up', 'Gave Up'),
+        ('want-to-read', 'Want to Read'),
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -32,9 +32,9 @@ class ReadingStatus(models.Model):
 
 class ReadingProgress(models.Model):
     PROGRESS_CHOICES = [
-        ('Page', 'Page')
-        ('Percentage', 'Percentage'),
-        ('Time', 'Time')
+        ('page', 'Page')
+        ('percentage', 'Percentage'),
+        ('time', 'Time')
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
