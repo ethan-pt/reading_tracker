@@ -5,9 +5,16 @@ from django.core.validators import MaxValueValidator
 
 
 class Book(models.Model):
+    BOOK_TYPE_CHOICES = [
+        ('paper book', 'paper book'),
+        ('e-book', 'e-book'),
+        ('audio book', 'audio book')
+    ]
+
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
     isbn = models.CharField(max_length=13, unique=True)
+    book_type = models.CharField(choices=BOOK_TYPE_CHOICES)
     length_pages = models.PositiveIntegerField(blank=True)
     length_time = models.DurationField(blank=True)
 
