@@ -16,8 +16,8 @@ class Book(models.Model):
     publisher = models.CharField(max_length=255)
     isbn = models.CharField(max_length=13, unique=True)
     book_type = models.CharField(choices=BOOK_TYPE_CHOICES)
-    length_pages = models.PositiveIntegerField(blank=True)
-    length_time = models.DurationField(blank=True)
+    length_pages = models.PositiveIntegerField(blank=True, null=True)
+    length_time = models.DurationField(blank=True, null=True)
 
 class ReadingStatus(models.Model):
     STATUS_CHOICES = [
@@ -42,6 +42,6 @@ class ReadingProgress(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     tracking_type = models.CharField(max_length=20, choices=PROGRESS_CHOICES)
     current_percent = models.PositiveIntegerField(validators=[MaxValueValidator(100)], blank=True)
-    current_page = models.PositiveIntegerField(blank=True)
-    current_time = models.DurationField(blank=True)
+    current_page = models.PositiveIntegerField(blank=True, null=True)
+    current_time = models.DurationField(blank=True, null=True)
     last_updated = models.DateTimeField(auto_now=True)
