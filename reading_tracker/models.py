@@ -33,7 +33,7 @@ class ReadingStatus(models.Model):
 
 class ReadingProgress(models.Model):
     PROGRESS_CHOICES = [
-        ('page', 'Page')
+        ('page', 'Page'),
         ('percentage', 'Percentage'),
         ('time', 'Time')
     ]
