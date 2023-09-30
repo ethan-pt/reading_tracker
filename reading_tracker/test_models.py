@@ -10,7 +10,6 @@ class BookModelTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username='testusername', password='testpassword')
         self.book = Book.objects.create(
-            user=self.user,
             title='Test Book',
             author='Test Author',
             publisher='Test Publisher',
