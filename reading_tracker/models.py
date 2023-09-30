@@ -11,6 +11,7 @@ class Book(models.Model):
         ('audio-book', 'audio book')
     ]
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
     publisher = models.CharField(max_length=255)
