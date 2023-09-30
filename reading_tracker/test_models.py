@@ -62,3 +62,20 @@ class BookModelTest(TestCase):
         self.assertEqual(book.book_type, 'audio-book')
         self.assertEqual(book.length_time.total_seconds(), 9000)
         self.assertIsNone(book.length_pages)
+
+class ReadingStatusTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        self.book = Book.objects.create(
+            title='Test Book',
+            author='Test Author',
+            publisher='Test Publisher',
+            isbn='1234567890123',
+            book_type='paper-book',
+            length_pages=200
+        )
+        self.reading_status = ReadingStatus.objects.create(
+            user= self.user,
+            book= self.book,
+            status='reading'
+        )
