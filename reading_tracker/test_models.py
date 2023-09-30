@@ -8,7 +8,7 @@ from datetime import timedelta
 
 class BookModelTest(TestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username='testusername', password='testpassword')
+        self.user = User.objects.create_user(username='testuser', password='testpassword')
         self.book = Book.objects.create(
             title='Test Book',
             author='Test Author',
