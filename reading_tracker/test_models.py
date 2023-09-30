@@ -67,6 +67,7 @@ class ReadingStatusTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username='testuser', password='testpassword')
         self.book = Book.objects.create(
+            user=self.user,
             title='Test Book',
             author='Test Author',
             publisher='Test Publisher',
@@ -75,7 +76,27 @@ class ReadingStatusTest(TestCase):
             length_pages=200
         )
         self.reading_status = ReadingStatus.objects.create(
-            user= self.user,
-            book= self.book,
+            user=self.user,
+            book=self.book,
             status='reading'
         )
+
+    def test_current_status(self):
+        self.assertEqual(self.reading_status.user, self.user)
+        self.assertEqual(self.reading_status.book, self.book)
+        self.assertEqual(self.reading_status.status, 'reading')
+
+    def test_change_status(self):
+        self.reading_status.status = 'finished'
+
+        self.assertEqual(self.reading_status.status, 'finished')
+
+    def test_book_deletion_cascades(self):
+        self.assertEqual(ReadingStatus.objects.filter(book=self.book).count(), 1)
+        self.book.delete()
+        self.assertEqual(ReadingStatus.objects.filter(book=self.book).count(), 0)
+
+    def test_user_deletion_cascades(self):
+        self.assertEqual(ReadingStatus.objects.filter(user=self.user).count(), 1)
+        self.user.delete()
+        self.assertEqual(ReadingStatus.objects.filter(user=self.user).count(), 0)
