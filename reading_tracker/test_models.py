@@ -93,3 +93,145 @@ class ReadingStatusTest(TestCase):
         self.assertEqual(ReadingStatus.objects.filter(user=self.user).count(), 1)
         self.user.delete()
         self.assertEqual(ReadingStatus.objects.filter(user=self.user).count(), 0)
+
+class ReadingProgressTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        self.book = Book.objects.create(
+            title='Test Book',
+            author='Test Author',
+            publisher='Test Publisher',
+            isbn='1234567890123'
+        )
+
+    def test_create_pages(self):
+        self.book.book_type = 'paper-book'
+        self.book.length_pages = 200
+
+        reading_progress = ReadingProgress.objects.create(
+            user=self.user,
+            book=self.book,
+            tracking_type='page',
+            current_page=50
+        )
+
+        self.assertEqual(reading_progress.user, self.user)
+        self.assertEqual(reading_progress.book, self.book)
+        self.assertEqual(reading_progress.tracking_type, 'page')
+        self.assertEqual(reading_progress.current_page, 50)
+
+    def test_update_pages(self):
+        self.book.book_type = 'paper-book'
+        self.book.length_pages = 200
+
+        reading_progress = ReadingProgress.objects.create(
+            user=self.user,
+            book=self.book,
+            tracking_type='page',
+            current_page=50
+        )
+
+        reading_progress.current_page = 75
+        reading_progress.save()
+
+        updated_reading_progress = ReadingProgress.objects.get(id=reading_progress.id)
+        self.assertEqual(updated_reading_progress.current_page, 75)
+
+    def test_create_percentage(self):
+        self.book.book_type = 'e-book'
+        
+        reading_progress = ReadingProgress.objects.create(
+            user=self.user,
+            book=self.book,
+            tracking_type='percentage',
+            current_percent=0
+        )
+
+        self.assertEqual(reading_progress.user, self.user)
+        self.assertEqual(reading_progress.book, self.book)
+        self.assertEqual(reading_progress.tracking_type, 'percentage')
+        self.assertEqual(reading_progress.current_percent, 0)
+
+    def test_update_percentage(self):
+        self.book.book_type = 'e-book'
+
+        reading_progress = ReadingProgress.objects.create(
+            user=self.user,
+            book=self.book,
+            tracking_type='percentage'
+        )
+
+        reading_progress.current_percent = 15
+        reading_progress.save()
+
+        updated_reading_progress = ReadingProgress.objects.get(id=reading_progress.id)
+        self.assertEqual(updated_reading_progress.current_percent, 15)
+
+    def test_create_time(self):
+        self.book.book_type = 'audio-book'
+        self.book.length_time = timedelta(
+            hours=2,
+            minutes=30,
+        )
+
+        reading_progress = ReadingProgress.objects.create(
+            user=self.user,
+            book=self.book,
+            tracking_type='time',
+            current_time=timedelta(
+                hours=0,
+                minutes=0,
+            )
+        )
+
+        self.assertEqual(reading_progress.user, self.user)
+        self.assertEqual(reading_progress.book, self.book)
+        self.assertEqual(reading_progress.tracking_type, 'time')
+        self.assertEqual(reading_progress.current_time.total_seconds(), 0)
+
+    def test_update_time(self):
+        self.book.book_type = 'audio-book'
+        self.book.length_time = timedelta(
+            hours=2,
+            minutes=30,
+        )
+
+        reading_progress = ReadingProgress.objects.create(
+            user=self.user,
+            book=self.book,
+            tracking_type='time',
+            current_time=timedelta(
+                hours=0,
+                minutes=0,
+            )
+        )
+
+        reading_progress.current_time = timedelta(
+            hours=1,
+        )
+        reading_progress.save()
+
+        updated_reading_progress = ReadingProgress.objects.get(id=reading_progress.id)
+        self.assertEqual(updated_reading_progress.current_time.total_seconds(), 3600)
+
+    def test_book_deletion_cascades(self):
+        reading_progress = ReadingProgress.objects.create(
+            user=self.user,
+            book=self.book,
+            tracking_type='percentage'
+        )
+        
+        self.assertEqual(ReadingProgress.objects.filter(book=self.book).count(), 1)
+        self.book.delete()
+        self.assertEqual(ReadingProgress.objects.filter(book=self.book).count(), 0)
+
+    def test_user_deletion_cascades(self):
+        reading_progress = ReadingProgress.objects.create(
+            user=self.user,
+            book=self.book,
+            tracking_type='percentage'
+        )
+
+        self.assertEqual(ReadingProgress.objects.filter(user=self.user).count(), 1)
+        self.user.delete()
+        self.assertEqual(ReadingProgress.objects.filter(user=self.user).count(), 0)
