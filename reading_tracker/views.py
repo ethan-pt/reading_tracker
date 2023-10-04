@@ -2,6 +2,7 @@ import datetime
 
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 
 from django.contrib.auth.views import LoginView
@@ -37,7 +38,7 @@ class ReaderRegister(FormView):
     
     def get(self, *args, **kwargs):
         if self.request.user.is_authenticated:
-            return reverse_lazy('reader')
+            return redirect('reader')
         
         return super(ReaderRegister, self).get(*args, **kwargs)
     
