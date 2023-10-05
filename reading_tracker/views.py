@@ -45,7 +45,7 @@ class ReaderRegister(FormView):
 
 class ReaderList(LoginRequiredMixin, ListView):
     model = ReadingStatus
-    context_object_name = 'book'
+    context_object_name = 'reading_statuses'
 
     def get_queryset(self):
         return ReadingStatus.objects.filter(user=self.request.user)
