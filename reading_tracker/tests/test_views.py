@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.urls import reverse
+from ..models import Book, ReadingStatus, ReadingProgress
 
 
 
@@ -91,3 +92,59 @@ class ReaderRegisterViewTest(TestCase):
         response = self.client.get(reverse('register'))
 
         self.assertRedirects(response, reverse('reader'))
+
+class ReaderListViewTest(TestCase):
+    def setUp(self):
+        """
+        Create test user, books, and reading statuses
+        """
+        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        self.client.login(username='testuser', password='testpassword')
+
+        self.book_1 = Book.objects.create(
+            title='Test Book 1',
+            author='Test Author',
+            publisher='Test Publisher',
+            isbn='1234567890123',
+            book_type='paper-book',
+            length_pages=200
+        )
+        self.book_2 = Book.objects.create(
+            title='Test Book 2',
+            author='Test Author',
+            publisher='Test Publisher',
+            isbn='0123456789012',
+            book_type='e-book'
+        )
+        
+        self.reading_status_1 = ReadingStatus.objects.create(
+            user=self.user,
+            book=self.book_1,
+            status='reading'
+        )
+        self.reading_status_2 = ReadingStatus.objects.create(
+            user=self.user,
+            book=self.book_2,
+            status='finished'
+        )
+
+    def test_validated_access(self):
+        """
+        Tests that authenticated users can access list view, checks response status code, template, and context data, and verifies that user's reading statuses are displayed
+        """
+        response = self.client.get(reverse('reader'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'reading_tracker/readingstatus_list.html')
+        self.assertIn('reading_statuses', response.context)
+        self.assertContains(response, 'Test Book 1')
+        self.assertContains(response, 'Test Book 2')
+
+    def test_invalidated_access(self):
+        """
+        Tests accessing reader view while not logged in and checks if user is redirected to login page
+        """
+        self.client.logout()
+
+        response = self.client.get(reverse('reader'))
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('login') + '?next=' + reverse('reader'))
