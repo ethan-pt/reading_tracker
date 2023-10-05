@@ -52,7 +52,7 @@ class ReaderList(LoginRequiredMixin, ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        #TODO: add context data
+        context['books'] = [status.book for status in context['reading_statuses']]
         return context
     
 
