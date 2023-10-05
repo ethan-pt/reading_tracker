@@ -44,19 +44,15 @@ class ReaderRegister(FormView):
     
 
 class ReaderList(LoginRequiredMixin, ListView):
-    model = Book
+    model = ReadingStatus
     context_object_name = 'book'
 
+    def get_queryset(self):
+        return ReadingStatus.objects.filter(user=self.request.user)
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        # search function
-        search_input = self.request.GET.get('search-area') or ''
-        if search_input:
-            context['book'] = context['book'].filter(title__icontains=search_input)
-
-        context['search-input'] = search_input
-
+        #TODO: add context data
         return context
     
 
