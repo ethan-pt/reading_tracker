@@ -58,7 +58,7 @@ class ReaderList(LoginRequiredMixin, ListView):
 
 class ReaderCreate(LoginRequiredMixin, CreateView):
     model = ReadingStatus
-    fields = ['book', 'reading_status']
+    fields = ['book', 'status']
     success_url = reverse_lazy('reader')
 
     def form_valid(self, form):
