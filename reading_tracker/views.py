@@ -2,6 +2,7 @@ import datetime
 
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.views.generic.base import TemplateView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 
@@ -41,7 +42,7 @@ class ReaderRegister(FormView):
             return redirect('reader')
         
         return super(ReaderRegister, self).get(*args, **kwargs)
-    
+
 
 class ReaderList(LoginRequiredMixin, ListView):
     model = ReadingStatus
@@ -54,7 +55,11 @@ class ReaderList(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['books'] = [status.book for status in context['reading_statuses']]
         return context
-    
+
+
+class ReaderSearch(LoginRequiredMixin, TemplateView):
+    template_name = 'reading_tracker/book_search.html'
+
 
 class ReaderCreate(LoginRequiredMixin, CreateView):
     model = ReadingStatus
