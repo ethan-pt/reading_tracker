@@ -7,7 +7,7 @@ searchButton.addEventListener("click", (event) => {
     const xhr = new XMLHttpRequest();
     xhr.open("GET", searchPath + searchText);
     console.log('request sent...');
-    xhr.onload = () => {
+    xhr.onreadystatechange = () => {
         console.log(xhr.status);
         if (xhr.readyState == 4 && xhr.status == 200) {
             console.log('success')
