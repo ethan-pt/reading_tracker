@@ -93,6 +93,10 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    'https://www.googleapis.com',
+]
+
 
 ROOT_URLCONF = 'config.urls'
 
