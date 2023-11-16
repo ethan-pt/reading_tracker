@@ -13,7 +13,7 @@ searchButton.addEventListener("click", (event) => {
             for(let i = 0; i < data.items.length; i++) {
                 let item = data.items[i];
                 const bookDiv = document.createElement("div");
-                bookDiv.innerHTML = `<br><p>${item.volumeInfo.title}</p>`;
+                bookDiv.innerHTML = `<br><h4>${item.volumeInfo.title}</h4>`;
                 contentWrapper.appendChild(bookDiv);
             }
         } else {
