@@ -62,8 +62,8 @@ class ReaderSearch(LoginRequiredMixin, TemplateView):
 
 
 class ReaderCreate(LoginRequiredMixin, CreateView):
-    model = ReadingStatus
-    fields = ['book', 'status']
+    model = Book
+    fields = ['title', 'author', 'publisher', 'gbooks_id', 'length_pages', 'length_time']
     success_url = reverse_lazy('reader')
 
     def form_valid(self, form):
