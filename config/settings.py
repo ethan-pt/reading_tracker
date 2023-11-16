@@ -15,12 +15,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 env = environ.Env(DEBUG=(bool, False))
-env_file = os.path.join(BASE_DIR, ".env")
+env_file = os.path.join(BASE_DIR, '.env')
 
 
 # Attempt to load the Project ID into the environment, safely failing on error.
 try:
-    _, os.environ["GOOGLE_CLOUD_PROJECT"] = google.auth.default()
+    _, os.environ['GOOGLE_CLOUD_PROJECT'] = google.auth.default()
 except google.auth.exceptions.DefaultCredentialsError:
     pass
 
@@ -29,7 +29,7 @@ except google.auth.exceptions.DefaultCredentialsError:
 if os.path.isfile(env_file):
     env.read_env(env_file)
 
-elif os.getenv("TRAMPOLINE_CI", None):
+elif os.getenv('TRAMPOLINE_CI', None):
     # Create local settings if running with CI, for unit testing
     placeholder = (
         f"SECRET_KEY=a\n"
@@ -38,35 +38,35 @@ elif os.getenv("TRAMPOLINE_CI", None):
     )
     env.read_env(io.StringIO(placeholder))
 
-elif os.environ.get("GOOGLE_CLOUD_PROJECT", None):
+elif os.environ.get('GOOGLE_CLOUD_PROJECT', None):
     # Pull secrets from Secret Manager
-    project_id = os.environ.get("GOOGLE_CLOUD_PROJECT")
+    project_id = os.environ.get('GOOGLE_CLOUD_PROJECT')
 
     client = secretmanager.SecretManagerServiceClient()
-    settings_name = os.environ.get("SETTINGS_NAME", "django_settings_reader")
+    settings_name = os.environ.get('SETTINGS_NAME', 'django_settings_reader')
     name = f"projects/{project_id}/secrets/{settings_name}/versions/latest"
-    payload = client.access_secret_version(name=name).payload.data.decode("UTF-8")
+    payload = client.access_secret_version(name=name).payload.data.decode('UTF-8')
     env.read_env(io.StringIO(payload))
 
 else:
-    raise Exception("No local .env or GOOGLE_CLOUD_PROJECT detected. No secrets found.")
+    raise Exception('No local .env or GOOGLE_CLOUD_PROJECT detected. No secrets found.')
 
 
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = env('SECRET_KEY')
 
 
-DEBUG = env("DEBUG")
+DEBUG = env('DEBUG')
 
 
-CLOUDRUN_SERVICE_URL = env("CLOUDRUN_SERVICE_URL", default=None)
+CLOUDRUN_SERVICE_URL = env('CLOUDRUN_SERVICE_URL', default=None)
 if CLOUDRUN_SERVICE_URL:
     ALLOWED_HOSTS = [urlparse(CLOUDRUN_SERVICE_URL).netloc]
     CSRF_TRUSTED_ORIGINS = [CLOUDRUN_SERVICE_URL]
     SECURE_SSL_REDIRECT = True
-    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 else:
-    ALLOWED_HOSTS = ["*"]
+    ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
@@ -90,7 +90,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -125,9 +125,9 @@ DATABASES = {'default': env.db()}
 
 
 # If the flag as been set, configure to use proxy
-if os.getenv("USE_CLOUD_SQL_AUTH_PROXY", None):
-    DATABASES["default"]["HOST"] = "127.0.0.1"
-    DATABASES["default"]["PORT"] = 5432
+if os.getenv('USE_CLOUD_SQL_AUTH_PROXY', None):
+    DATABASES['default']['HOST'] = '127.0.0.1'
+    DATABASES['default']['PORT'] = 5432
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -159,15 +159,15 @@ USE_TZ = True
 
 LOGIN_URL = 'login'
 
-GS_BUCKET_NAME = env("GS_BUCKET_NAME")
+GS_BUCKET_NAME = env('GS_BUCKET_NAME')
 
 STATIC_URL = 'static/'
 
-DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
-STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
-GS_DEFAULT_ACL = "publicRead"
+GS_DEFAULT_ACL = 'publicRead'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
