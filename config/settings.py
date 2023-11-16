@@ -77,7 +77,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'reading_tracker.apps.ReadingTrackerConfig',
-    'storages'
+    'storages',
     'corsheaders',
 ]
 
