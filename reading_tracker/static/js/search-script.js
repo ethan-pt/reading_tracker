@@ -4,7 +4,7 @@ searchButton.addEventListener("click", (event) => {
     let searchText = encodeURIComponent(document.getElementById("search-book-area").value);
 
     const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = () => {
+    xhr.onload = () => {
         const contentWrapper = document.getElementById("content");
 
         if (xhr.readyState == 4 && xhr.status == 200) {
