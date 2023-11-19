@@ -13,7 +13,11 @@ searchButton.addEventListener("click", (event) => {
             for(let i = 0; i < data.items.length; i++) {
                 let item = data.items[i];
                 const bookDiv = document.createElement("div");
-                bookDiv.innerHTML = `<br><h4>${item.volumeInfo.title}</h4>`;
+
+                const bookTitle = item.volumeInfo.title; //returns a title string
+                const bookAuthors = item.volumeInfo.authors; //returns a list of authors
+
+                bookDiv.innerHTML = `<br><h4>${bookTitle}</h4>`;
                 contentWrapper.appendChild(bookDiv);
             }
         } else {
