@@ -95,6 +95,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     'https://www.googleapis.com',
+    'https://books.google.com',
 ]
 
 
