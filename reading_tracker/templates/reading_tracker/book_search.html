@@ -7,10 +7,10 @@
 </div>
 
 <div class="card-body">
-    <div>
-        <input type="text" id="search-book-area" placeholder="Enter title, author, publisher, or ISBN">
-        <input type="submit" id="search-book-button" class="button">
-    </div>
+    <form id="search-form">
+        <input type="text" id="search-book-area" name="text-area" placeholder="Enter title, author, publisher, or ISBN">
+        <input type="submit" id="search-book-button" class="button" value="Search">
+    </form>
 
     <a href="{% url 'book-create' %}">Or enter your book manually</a>
 

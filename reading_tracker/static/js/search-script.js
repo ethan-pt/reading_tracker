@@ -1,8 +1,7 @@
 // upon search event, request search results from Google Books API
-const searchButton = document.getElementById("search-book-button");
-searchButton.addEventListener("click", (event) => {
-    const searchPath = "https://www.googleapis.com/books/v1/volumes?q=";
-    let searchText = encodeURIComponent(document.getElementById("search-book-area").value);
+const searchForm = document.getElementById("search-form");
+searchForm.addEventListener("submit", (event) => {
+    event.preventDefault();
 
     const request = new XMLHttpRequest();
     request.onload = () => {
@@ -46,6 +45,10 @@ searchButton.addEventListener("click", (event) => {
         }
     }
 
-    request.open("GET", searchPath + searchText);
+    // get form data
+    const formData = new FormData(searchForm);
+    const searchText = encodeURIComponent(formData.get("text-area"));
+
+    request.open("GET", "https://www.googleapis.com/books/v1/volumes?q=" + searchText);
     request.send();
 });
