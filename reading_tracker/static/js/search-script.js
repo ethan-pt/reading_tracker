@@ -31,6 +31,10 @@ searchForm.addEventListener("submit", (event) => {
                     bookCover.src = coverNotFoundImg; // coverNotFoundImg declaration located in book_search template
                 }
 
+                // set image height and allow width to maintain aspect ratio
+                bookCover.style.height = "80px";
+                bookCover.style.width = "auto"
+
                 // add each book's data to a div and each div to another div
                 const bookDiv = document.createElement("div");
                 bookDiv.appendChild(bookCover);
