@@ -19,7 +19,7 @@ searchForm.addEventListener("submit", (event) => {
                 const bookTitle = document.createElement("h4");
                 bookTitle.innerHTML = item.volumeInfo.title; // returns a title string
                 const bookAuthors  = document.createElement("p");
-                bookAuthors.innerHTML = `<b>By:</b> ${item.volumeInfo.authors.join(", ")}`; // returns a list of authors
+                bookAuthors.innerHTML = `<strong>By:</strong> ${item.volumeInfo.authors.join(", ")}`; // returns a list of authors
 
                 // if Google Books has a cover image, display image, else display default image
                 const bookCover = document.createElement("img");
