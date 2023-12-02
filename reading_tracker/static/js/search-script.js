@@ -6,6 +6,7 @@ searchForm.addEventListener("submit", (event) => {
     const request = new XMLHttpRequest();
     request.onload = () => {
         const contentWrapper = document.getElementById("content");
+        contentWrapper.innerHTML = "";
         contentWrapper.appendChild(document.createElement("br"));
 
         // displays book title, cover, and author(s) if request is good
