@@ -110,6 +110,15 @@ input {
     padding: 10px;
 }
 
+#search-form {
+    display: flex;
+}
+
+#manual-add-link {
+    font-size: 0.8em;
+    margin:0;
+}
+
 @media screen and (max-width:320px) {
     #search-add-wrapper {
         padding: 10px;
