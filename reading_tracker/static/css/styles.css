@@ -173,7 +173,7 @@ label {
 }
 
 .results-div:hover {
-    background-color: #dfe4ea;
+    background-color: rgba(230, 235, 241, 0.75);
     box-shadow: 0 0 13px -4px rgba(0, 0, 0, 0.21);
 }
 
