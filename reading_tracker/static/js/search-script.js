@@ -31,16 +31,33 @@ searchForm.addEventListener("submit", (event) => {
                     bookCover.src = coverNotFoundImg; // coverNotFoundImg declaration located in book_search template
                 }
 
-                // set image height and allow width to maintain aspect ratio
+                // set image height and allow width to maintain aspect ratio, using new width to calculate padding width to keep a square border
                 bookCover.style.height = "80px";
-                bookCover.style.width = "auto"
+                bookCover.style.width = "auto";
+                bookCover.onload = (event) => {
+                    coverDiv.style.padding = `0 ${45-(bookCover.width/2)}px`;
+                }
 
                 // add each book's data to a div and each div to another div
-                const bookDiv = document.createElement("div");
-                bookDiv.appendChild(bookCover);
-                bookDiv.appendChild(bookTitle);
-                bookDiv.appendChild(bookAuthors);
-                contentWrapper.appendChild(bookDiv);
+                const bookSearchDiv = document.createElement("div");
+                bookSearchDiv.setAttribute("class", "book-search-div");
+
+                const coverDiv = document.createElement("div");
+                coverDiv.setAttribute("class", "cover-div");
+                coverDiv.appendChild(bookCover);
+                bookSearchDiv.appendChild(coverDiv);
+
+                const infoDiv = document.createElement("div");
+                infoDiv.setAttribute("class", "info-div");
+                infoDiv.appendChild(bookTitle);
+                infoDiv.appendChild(bookAuthors);
+                bookSearchDiv.appendChild(infoDiv);
+
+                const anchorWrapper = document.createElement("a");
+                anchorWrapper.setAttribute("href", "")
+                anchorWrapper.appendChild(bookSearchDiv);
+
+                contentWrapper.appendChild(anchorWrapper);
             }
         // displays error message if request is bad
         } else { 
