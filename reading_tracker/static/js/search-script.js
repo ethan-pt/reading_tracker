@@ -54,7 +54,7 @@ searchForm.addEventListener("submit", (event) => {
                 bookSearchDiv.appendChild(infoDiv);
 
                 const anchorWrapper = document.createElement("a");
-                anchorWrapper.setAttribute("href", "")
+                anchorWrapper.setAttribute("href", "");
                 anchorWrapper.appendChild(bookSearchDiv);
 
                 contentWrapper.appendChild(anchorWrapper);
