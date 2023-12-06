@@ -39,23 +39,23 @@ searchForm.addEventListener("submit", (event) => {
                 }
 
                 // add each book's data to a div and each div to another div
-                const bookSearchDiv = document.createElement("div");
-                bookSearchDiv.setAttribute("class", "book-search-div");
+                const resultsDiv = document.createElement("div");
+                resultsDiv.setAttribute("class", "results-div");
 
                 const coverDiv = document.createElement("div");
                 coverDiv.setAttribute("class", "cover-div");
                 coverDiv.appendChild(bookCover);
-                bookSearchDiv.appendChild(coverDiv);
+                resultsDiv.appendChild(coverDiv);
 
                 const infoDiv = document.createElement("div");
                 infoDiv.setAttribute("class", "info-div");
                 infoDiv.appendChild(bookTitle);
                 infoDiv.appendChild(bookAuthors);
-                bookSearchDiv.appendChild(infoDiv);
+                resultsDiv.appendChild(infoDiv);
 
                 const anchorWrapper = document.createElement("a");
                 anchorWrapper.setAttribute("href", "");
-                anchorWrapper.appendChild(bookSearchDiv);
+                anchorWrapper.appendChild(resultsDiv);
 
                 contentWrapper.appendChild(anchorWrapper);
             }

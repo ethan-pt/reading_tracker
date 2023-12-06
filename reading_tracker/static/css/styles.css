@@ -160,14 +160,19 @@ label {
     padding: 20px;
 }
 
-.book-search-div {
+.search-div {
+    padding: 5px;
+}
+
+.results-div {
     display: flex;
     align-items: start;
     padding: 5px;
     border-top: 1px solid #dfe4ea;
+    border-radius: 5px;
 }
 
-.book-search-div:hover {
+.results-div:hover {
     background-color: #dfe4ea;
     box-shadow: 0 0 13px -4px rgba(0, 0, 0, 0.21);
 }
@@ -176,6 +181,7 @@ label {
     background-color: #fff;
     border: 1px solid;
     place-content: center;
+    border-radius: 5px;
 }
 
 .info-div {
