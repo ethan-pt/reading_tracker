@@ -13,7 +13,18 @@
             <input type="submit" id="search-book-button" class="button" value="Search">
         </form>
 
-        <a href="{% url 'book-create' %}"><p id="manual-add-link">Or enter your book manually</p></a>
+        <div class="manual-tips-div">
+            <a href="{% url 'book-create' %}"><p id="manual-add-link">Or enter your book manually</p></a>
+            <p id="search-tips" title="intitle: Returns results where the text following this keyword is found in the title.
+inauthor: Returns results where the text following this keyword is found in the author.
+inpublisher: Returns results where the text following this keyword is found in the publisher.
+subject: Returns results where the text following this keyword is listed in the category list of the volume.
+isbn: Returns results where the text following this keyword is the ISBN number.
+lccn: Returns results where the text following this keyword is the Library of Congress Control Number.
+oclc: Returns results where the text following this keyword is the Online Computer Library Center number.">
+                <strong>&#x3f</strong>
+            </p>
+        </div>
     </div>
 
     <div id="content"></div>
@@ -21,7 +32,7 @@
 
 
 <script>
-    const coverNotFoundImg = "{% static "img/icon-image-not-found.jpg" %}";
+    const coverNotFoundImg = "{% static 'img/icon-image-not-found.jpg' %}";
 </script>
 
 <script src="{% static "js/search-script.js" %}"></script>

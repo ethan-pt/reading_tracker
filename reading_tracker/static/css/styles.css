@@ -116,7 +116,16 @@ input {
 
 #manual-add-link {
     font-size: 0.8em;
-    margin:0 2px;
+    margin: 0 2px;
+}
+
+#search-tips {
+    font-size: 0.8em;
+    margin: 0 10px;
+}
+
+#search-tips:hover {
+    cursor: pointer;
 }
 
 @media screen and (max-width:320px) {
@@ -162,6 +171,10 @@ label {
 
 .search-div {
     padding: 5px;
+}
+
+.manual-tips-div {
+    display: flex;
 }
 
 .results-div {
