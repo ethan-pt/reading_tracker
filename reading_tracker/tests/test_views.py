@@ -105,7 +105,7 @@ class ReaderListViewTest(TestCase):
             title='Test Book 1',
             author='Test Author',
             publisher='Test Publisher',
-            isbn='1234567890123',
+            gbooks_id='123456789012',
             book_type='paper-book',
             length_pages=200
         )
@@ -113,7 +113,7 @@ class ReaderListViewTest(TestCase):
             title='Test Book 2',
             author='Test Author',
             publisher='Test Publisher',
-            isbn='0123456789012',
+            gbooks_id='012345678901',
             book_type='e-book'
         )
         

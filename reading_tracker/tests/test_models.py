@@ -16,7 +16,7 @@ class BookModelTest(TestCase):
             title='Test Book',
             author='Test Author',
             publisher='Test Publisher',
-            isbn='1234567890123',
+            gbooks_id='123456789012',
         )
 
     def test_create_paper_book(self):
@@ -30,7 +30,7 @@ class BookModelTest(TestCase):
         self.assertEqual(book.title, 'Test Book')
         self.assertEqual(book.author, 'Test Author')
         self.assertEqual(book.publisher, 'Test Publisher')
-        self.assertEqual(book.isbn, '1234567890123')
+        self.assertEqual(book.gbooks_id, '123456789012')
         self.assertEqual(book.book_type, 'paper-book')
         self.assertEqual(book.length_pages, 200)
         self.assertIsNone(book.length_time)
@@ -45,7 +45,7 @@ class BookModelTest(TestCase):
         self.assertEqual(book.title, 'Test Book')
         self.assertEqual(book.author, 'Test Author')
         self.assertEqual(book.publisher, 'Test Publisher')
-        self.assertEqual(book.isbn, '1234567890123')
+        self.assertEqual(book.gbooks_id, '123456789012')
         self.assertEqual(book.book_type, 'e-book')
         self.assertIsNone(book.length_pages)
         self.assertIsNone(book.length_time)
@@ -64,7 +64,7 @@ class BookModelTest(TestCase):
         self.assertEqual(book.title, 'Test Book')
         self.assertEqual(book.author, 'Test Author')
         self.assertEqual(book.publisher, 'Test Publisher')
-        self.assertEqual(book.isbn, '1234567890123')
+        self.assertEqual(book.gbooks_id, '123456789012')
         self.assertEqual(book.book_type, 'audio-book')
         self.assertEqual(book.length_time.total_seconds(), 9000)
         self.assertIsNone(book.length_pages)
@@ -79,7 +79,7 @@ class ReadingStatusTest(TestCase):
             title='Test Book',
             author='Test Author',
             publisher='Test Publisher',
-            isbn='1234567890123',
+            gbooks_id='123456789012',
             book_type='paper-book',
             length_pages=200
         )
@@ -131,7 +131,7 @@ class ReadingProgressTest(TestCase):
             title='Test Book',
             author='Test Author',
             publisher='Test Publisher',
-            isbn='1234567890123'
+            gbooks_id='123456789012'
         )
 
     def test_create_pages(self):
