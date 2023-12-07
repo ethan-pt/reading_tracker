@@ -148,3 +148,29 @@ class ReaderListViewTest(TestCase):
         response = self.client.get(reverse('reader'))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('login') + '?next=' + reverse('reader'))
+
+class ReaderSearchView(TestCase):
+    def setUp(self):
+        """
+        create test user
+        """
+        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        self.client.login(username='testuser', password='testpassword')
+    
+    def test_validated_access(self):
+        """
+        Tests that authenticated users can access list view, checks response status code, and template
+        """
+        response = self.client.get(reverse('book-search'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'reading_tracker/book_search.html')
+
+    def test_invalidated_access(self):
+        """
+        Tests accessing search view while not logged in and checks if user is redirected to login page
+        """
+        self.client.logout()
+
+        response = self.client.get(reverse('book-search'))
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('login') + '?next=' + reverse('book-search'))
