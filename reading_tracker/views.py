@@ -1,4 +1,5 @@
 import datetime
+import requests
 
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
@@ -57,7 +58,7 @@ class ReaderList(LoginRequiredMixin, ListView):
         return context
 
 
-class ReaderSearch(LoginRequiredMixin, TemplateView):
+class ReaderSearch(LoginRequiredMixin, FormView):
     template_name = 'reading_tracker/book_search.html'
 
 
