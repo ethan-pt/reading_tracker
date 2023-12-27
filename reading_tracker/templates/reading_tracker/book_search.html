@@ -8,8 +8,9 @@
 
 <div class="card-body">
     <div class="search-div">
-        <form id="search-form">
-            <input type="text" id="search-book-area" name="text-area" placeholder="Enter title, author, publisher, or ISBN">
+        <form method="POST" action="" id="search-form">
+            {% csrf_token %}
+            {{ form }}
             <input type="submit" id="search-book-button" class="button" value="Search">
         </form>
 
