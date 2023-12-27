@@ -6,10 +6,6 @@ class SearchForm(forms.Form):
     search_query = forms.CharField(max_length=255)
 
 
-class ResultsForm(forms.Form):
-    pass
-
-
 class CreateForm(forms.Form):
     BOOK_TYPE_CHOICES = [
         ('paper-book', 'paper book'),
