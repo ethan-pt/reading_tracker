@@ -13,6 +13,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
 from .models import Book, ReadingStatus, ReadingProgress
+from .forms import SearchForm
 
 import urllib.parse
 import requests
@@ -63,6 +64,7 @@ class ReaderList(LoginRequiredMixin, ListView):
 
 class ReaderSearch(LoginRequiredMixin, FormView):
     template_name = 'reading_tracker/book_search.html'
+    form_class = SearchForm
 
     def form_valid(self, form):
         search_query = form.cleaned_data['search_query']
