@@ -3,7 +3,18 @@ from django import forms
 
 
 class SearchForm(forms.Form):
-    search_query = forms.CharField(max_length=255)
+    search_query = forms.CharField(
+        max_length=255,
+        label='',
+        strip=True,
+        widget=forms.TextInput(attrs={
+            'type': 'text',
+            'id': 'search-book-area',
+            'name': 'text-area',
+            'size': '50%',
+            'placeholder': 'Enter title, author, publisher, or ISBN'
+        })
+    )
 
 
 class CreateForm(forms.Form):
