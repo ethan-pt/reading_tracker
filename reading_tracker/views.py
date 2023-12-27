@@ -4,7 +4,7 @@ import requests
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic.base import TemplateView
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 
 from django.contrib.auth.views import LoginView
@@ -70,6 +70,33 @@ class ReaderSearch(LoginRequiredMixin, FormView):
         search_query = form.cleaned_data['search_query']
         api_url = f'https://www.googleapis.com/books/v1/volumes?q={urllib.parse.quote_plus(search_query)}'
         response = requests.get(api_url)
+
+        # if request is successful, return request data, else return false success bool so front end knows to display error message
+        if response.status_code == 200:
+            data = response.json()
+            book_count = data.get('totalItems')
+            books = data.get('items')
+
+            # this for loop iterates through book objects returned and adds cover photo and 
+            # replaces authors list with a joined string for each book in returned book data
+            for book in books:
+                book['volumeInfo']['authors'] = ', '.join(book['volumeInfo']['authors'])
+                book['cover'] = f"https://books.google.com/books/content?id={book['id']}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+
+            context = {
+                'form': SearchForm,
+                'success_bool': True, # tells front end whether or not search request was successful
+                'book_count': book_count,
+                'books': books,
+            }
+        
+        else:
+            context = {
+                'form': SearchForm,
+                'success_bool': False
+            }
+
+        return render(self.request, self.template_name, context)
 
 
 class ReaderCreate(LoginRequiredMixin, CreateView):
