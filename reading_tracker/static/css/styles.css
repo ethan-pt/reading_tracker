@@ -213,7 +213,6 @@ ul.errorlist {
 .cover-div {
     background-color: #fff;
     border: 1px solid #dfe4ea;
-    place-content: center;
     border-radius: 5px;
     height: 80px;
 }
