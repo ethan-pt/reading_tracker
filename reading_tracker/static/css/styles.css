@@ -112,6 +112,12 @@ input {
 
 #search-form {
     display: flex;
+    justify-content: center;
+}
+
+#search-book-area {
+    height: 18px;
+    width: 94.7%;
 }
 
 #manual-add-link {
@@ -126,6 +132,13 @@ input {
 
 #search-tips:hover {
     cursor: pointer;
+}
+
+#book-count {
+    font-size: small;
+    font-weight: 500;
+    font-style: italic;
+    margin: 0 0 0 5px;
 }
 
 @media screen and (max-width:320px) {
@@ -147,6 +160,10 @@ textarea {
 label {
     padding-top: 10px !important;
     display: block;
+}
+
+ul.errorlist {
+    display: none;
 }
 
 ::placeholder {
@@ -171,6 +188,9 @@ label {
 
 .search-div {
     padding: 5px;
+    margin: 0 0 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .manual-tips-div {
@@ -196,6 +216,12 @@ label {
     border: 1px solid #dfe4ea;
     place-content: center;
     border-radius: 5px;
+    height: 80px;
+}
+
+.cover-img {
+    height: 80px;
+    width: auto;
 }
 
 .info-div {
