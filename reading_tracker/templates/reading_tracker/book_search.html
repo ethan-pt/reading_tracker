@@ -28,13 +28,31 @@ oclc: Returns results where the text following this keyword is the Online Comput
         </div>
     </div>
 
-    <div id="content"></div>
+    <div id="content">
+        {% if success_bool %}
+            <p id="book-count">{{ book_count }} book{{ book_count|pluralize:"s" }} found</p>
+
+            {% for book in books %}
+                <a href="">
+                    <div class="results-div">
+                        <div class="cover-div">
+                            <img class="cover-img" src="{{ book.cover }}" alt="{% static 'img/icon-image-not-found.jpg' %}">
+                        </div>
+
+                        <div class="info-div">
+                            <h4>{{ book.volumeInfo.title }}</h4>
+                            <p>by: {{ book.volumeInfo.authors }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+
+        {% else %}
+            <h4>Something went wrong, try again later</h4>
+
+        {% endif %}
+    </div>
 </div>
-
-
-<script>
-    const coverNotFoundImg = "{% static 'img/icon-image-not-found.jpg' %}";
-</script>
 
 <script src="{% static "js/search-script.js" %}"></script>
 
