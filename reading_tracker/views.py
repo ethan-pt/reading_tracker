@@ -13,7 +13,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
 from .models import Book, ReadingStatus, ReadingProgress
-from .forms import SearchForm
+from .forms import CreateForm, SearchForm
 
 import urllib.parse
 import requests
@@ -110,7 +110,7 @@ class ReaderSearch(LoginRequiredMixin, FormView):
 
 class ReaderCreate(LoginRequiredMixin, CreateView):
     model = Book
-    fields = ['title', 'author', 'publisher', 'gbooks_id', 'length_pages', 'length_time']
+    form_class = CreateForm
     success_url = reverse_lazy('reader')
 
     def form_valid(self, form):
