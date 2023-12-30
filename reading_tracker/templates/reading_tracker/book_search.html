@@ -33,8 +33,9 @@ oclc: Returns results where the text following this keyword is the Online Comput
             <p id="book-count">{{ book_count }} book{{ book_count|pluralize:"s" }} found</p>
 
             {% for book in books %}
-                <a href="">
-                    <div class="results-div">
+                <form method="POST" action="" class="result-form" name="result-form">
+                    <input type="hidden" value="{{ book }}" name="book-id">
+                    <div class="results-div" onclick="document.forms['result-form'].submit();">
                         <div class="cover-div">
                             <img class="cover-img" src="{{ book.cover }}" alt="{% static 'img/icon-image-not-found.jpg' %}">
                         </div>
@@ -44,7 +45,7 @@ oclc: Returns results where the text following this keyword is the Online Comput
                             <p>by: {{ book.volumeInfo.authors }}</p>
                         </div>
                     </div>
-                </a>
+                </form>
             {% endfor %}
 
         {% else %}
