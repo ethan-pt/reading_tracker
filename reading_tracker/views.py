@@ -72,10 +72,10 @@ class ReaderSearch(LoginRequiredMixin, FormView):
             search_query = form.cleaned_data['search_query']
             api_url = f'https://www.googleapis.com/books/v1/volumes?q={urllib.parse.quote_plus(search_query)}'
             response = requests.get(api_url)
+            data = response.json()
 
             # if request is successful, return request data, else return false success bool so front end knows to display error message
-            if response.status_code == 200:
-                data = response.json()
+            if response.status_code == 200 and data.get('totalItems'):
                 book_count = data.get('totalItems')
                 books = data.get('items')
 
