@@ -34,6 +34,7 @@ oclc: Returns results where the text following this keyword is the Online Comput
 
             {% for book in books %}
                 <form method="POST" action="" class="result-form" name="result-form">
+                    {% csrf_token %}
                     <input type="hidden" value="{{ book }}" name="book-id">
                     <div class="results-div" onclick="document.forms['result-form'].submit();">
                         <div class="cover-div">
