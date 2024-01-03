@@ -5,6 +5,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.views.generic.base import TemplateView
 from django.shortcuts import redirect, render
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 
 from django.contrib.auth.views import LoginView
@@ -68,7 +69,7 @@ class ReaderSearch(LoginRequiredMixin, FormView):
 
     def form_valid(self, form):
         # if posted form is search form, do search form stuff, else if form is result form, do result form stuff
-        if form.fields['search_query']:
+        if form.cleaned_data.get('search_query'):
             search_query = form.cleaned_data['search_query']
             api_url = f'https://www.googleapis.com/books/v1/volumes?q={urllib.parse.quote_plus(search_query)}'
             response = requests.get(api_url)
@@ -105,11 +106,10 @@ class ReaderSearch(LoginRequiredMixin, FormView):
             return render(self.request, self.template_name, context)
         
         # if results form, set session variable to form data (the user's chosen book) and redirect to ReaderCreate
-        elif form.fields['book-id']:
-            self.request.session['result_data'] = form.cleaned_data['book-id']
+        else:
+            self.request.session['book_data'] = form.cleaned_data.get('book_data')
 
-            redirect('book-create')
-
+            return HttpResponseRedirect(reverse_lazy('book-create'))
 
 
 class ReaderCreate(LoginRequiredMixin, CreateView):
