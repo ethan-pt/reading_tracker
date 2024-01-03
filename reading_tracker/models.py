@@ -14,6 +14,7 @@ class Book(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
     publisher = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
     gbooks_id = models.CharField(max_length=12, unique=True, blank=True, null=True)
     book_type = models.CharField(choices=BOOK_TYPE_CHOICES)
     length_pages = models.PositiveIntegerField(blank=True, null=True)
