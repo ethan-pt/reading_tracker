@@ -69,13 +69,13 @@ class ReaderSearch(LoginRequiredMixin, FormView):
 
     def form_valid(self, form):
         # if posted form is search form, do search form stuff, else if form is result form, do result form stuff
-        if form.cleaned_data.get('search_query'):
+        if 'search_query' in self.request.POST:
             search_query = form.cleaned_data['search_query']
             api_url = f'https://www.googleapis.com/books/v1/volumes?q={urllib.parse.quote_plus(search_query)}'
             response = requests.get(api_url)
             data = response.json()
 
-            # if request is successful, return request data, else return false success bool so front end knows to display error message
+            # if request is successful, return request data
             if response.status_code == 200 and data.get('totalItems'):
                 book_count = data.get('totalItems')
                 books = data.get('items')
@@ -96,20 +96,22 @@ class ReaderSearch(LoginRequiredMixin, FormView):
                     'book_count': book_count,
                     'books': books,
                 }
-            
-            else:
-                context = {
-                    'form': SearchForm,
-                    'success_bool': False
-                }
 
-            return render(self.request, self.template_name, context)
+                return render(self.request, self.template_name, context)
         
         # if results form, set session variable to form data (the user's chosen book) and redirect to ReaderCreate
-        else:
-            self.request.session['book_data'] = form.cleaned_data.get('book_data')
+        elif 'book_data' in self.request.POST:
+            self.request.session['book_data'] = self.request.POST.get('book_data')
 
             return HttpResponseRedirect(reverse_lazy('book-create'))
+        
+        # return false success bool so front end knows to display error message
+        context = {
+            'form': SearchForm,
+            'success_bool': False,
+        }
+
+        return render(self.request, self.template_name, context)
 
 
 class ReaderCreate(LoginRequiredMixin, CreateView):
