@@ -35,7 +35,7 @@ oclc: Returns results where the text following this keyword is the Online Comput
             {% for book in books %}
                 <form method="POST" action="" class="result-form" name="result-form">
                     {% csrf_token %}
-                    <input type="hidden" value="{{ book }}" name="book-id">
+                    <input type="hidden" value="{{ book }}" name="book_data">
                     <div class="results-div" onclick="document.forms['result-form'].submit();">
                         <div class="cover-div">
                             <img class="cover-img" src="{{ book.cover }}" alt="{% static 'img/icon-image-not-found.jpg' %}">
