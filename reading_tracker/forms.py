@@ -1,9 +1,11 @@
 from django import forms
+from .models import Book
 
 
 
 class SearchForm(forms.Form):
     search_query = forms.CharField(
+        required=False,
         max_length=255,
         label='',
         strip=True,
@@ -17,17 +19,7 @@ class SearchForm(forms.Form):
     )
 
 
-class CreateForm(forms.Form):
-    BOOK_TYPE_CHOICES = [
-        ('paper-book', 'paper book'),
-        ('e-book', 'e-book'),
-        ('audio-book', 'audio book')
-    ]
-
-    title = forms.CharField(max_length=255)
-    author = forms.CharField(max_length=255)
-    publisher = forms.CharField(max_length=255)
-    gbooks_id = forms.CharField(max_length=12)
-    book_type = forms.ChoiceField(choices=BOOK_TYPE_CHOICES)
-    length_pages = forms.IntegerField()
-    length_time = forms.DurationField()
+class CreateForm(forms.ModelForm):  
+    class Meta:
+        model = Book
+        exclude = ['gbooks_id']
