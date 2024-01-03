@@ -1,5 +1,6 @@
 import datetime
 import requests
+import ast
 
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
@@ -118,6 +119,29 @@ class ReaderCreate(LoginRequiredMixin, CreateView):
     model = Book
     form_class = CreateForm
     success_url = reverse_lazy('reader')
+
+    def get_initial(self):
+        # tries to load in session data if it exists
+        try:
+            book_data_str = self.request.session['book_data']
+            book_data = ast.literal_eval(book_data_str)
+
+            title = book_data['volumeInfo'].get('title', '')
+            author = book_data['volumeInfo'].get('authors', '')
+            publisher = book_data['volumeInfo'].get('publisher', '')
+            description = book_data['volumeInfo'].get('description', '')
+            length_pages = book_data['volumeInfo'].get('pageCount', 0)
+
+            return {
+                'title': title,
+                'author': author,
+                'publisher': publisher,
+                'description': description,
+                'length_pages': length_pages,
+            }
+        
+        except:
+            pass
 
     def form_valid(self, form):
         form.instance.user = self.request.user
