@@ -22,4 +22,4 @@ class SearchForm(forms.Form):
 class CreateForm(forms.ModelForm):  
     class Meta:
         model = Book
-        exclude = ['gbooks_id']
+        fields = "__all__"
