@@ -82,7 +82,11 @@ class ReaderSearch(LoginRequiredMixin, FormView):
                 # this for loop iterates through book objects returned and adds cover photo and 
                 # replaces authors list with a joined string for each book in returned book data
                 for book in books:
-                    book['volumeInfo']['authors'] = ', '.join(book['volumeInfo']['authors'])
+                    if book['volumeInfo'].get('authors'):
+                        book['volumeInfo']['authors'] = ', '.join(book['volumeInfo']['authors'])
+                    else:
+                        book['volumeInfo']['authors'] = 'Author not found'
+                    
                     book['cover'] = f"https://books.google.com/books/content?id={book['id']}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
 
                 context = {
