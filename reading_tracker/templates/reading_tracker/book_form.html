@@ -1,5 +1,6 @@
 {% extends 'reading_tracker/main.html' %}
 {% block content %}
+{% load static %}
 
 <div class="header-bar">
     <a href="{% url 'book-search' %}">&#8592; Back</a>
@@ -13,5 +14,7 @@
         <input class="button" type="submit" value="Submit">
     </form>
 </div>
+
+<script src="{% static "js/form-script.js" %}"></script>
 
 {% endblock content %}
