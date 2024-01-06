@@ -130,6 +130,7 @@ class ReaderCreate(LoginRequiredMixin, CreateView):
             author = book_data['volumeInfo'].get('authors', '')
             publisher = book_data['volumeInfo'].get('publisher', '')
             description = book_data['volumeInfo'].get('description', '')
+            gbooks_id = book_data['id']
             length_pages = book_data['volumeInfo'].get('pageCount', 0)
 
             return {
@@ -137,6 +138,7 @@ class ReaderCreate(LoginRequiredMixin, CreateView):
                 'author': author,
                 'publisher': publisher,
                 'description': description,
+                'gbooks_id': gbooks_id,
                 'length_pages': length_pages,
             }
         
