@@ -221,11 +221,14 @@ ul.errorlist {
     border: 1px solid #dfe4ea;
     border-radius: 5px;
     height: 80px;
+    width: 80px;
 }
 
 .cover-img {
     height: 80px;
     width: auto;
+    display: block;
+    margin: auto;
 }
 
 .info-div {
