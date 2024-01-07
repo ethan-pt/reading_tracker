@@ -121,7 +121,7 @@ class ReaderCreate(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('reader')
 
     def get_initial(self):
-        # tries to load in session data if it exists
+        # tries to load in session data as initial variables if it exists
         try:
             book_data_str = self.request.session['book_data']
             book_data = ast.literal_eval(book_data_str)
