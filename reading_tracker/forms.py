@@ -19,7 +19,11 @@ class SearchForm(forms.Form):
     )
 
 
-class CreateForm(forms.ModelForm):  
+class CreateForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = "__all__"
+        fields = '__all__'
+        labels = {
+            'length_pages': 'Length',
+            'length_time': 'Length'
+        }
