@@ -1,3 +1,4 @@
+import urllib.parse
 import datetime
 import requests
 import ast
@@ -17,8 +18,6 @@ from django.contrib.auth import login
 from .models import Book, ReadingStatus, ReadingProgress
 from .forms import CreateForm, SearchForm
 
-import urllib.parse
-import requests
 
 
 
@@ -89,7 +88,7 @@ class ReaderSearch(LoginRequiredMixin, FormView):
                     else:
                         book['volumeInfo']['authors'] = 'Author not found'
                     
-                    book['cover'] = f"https://books.google.com/books/content?id={book['id']}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+                    book['volumeInfo']['coverUrl'] = f"https://books.google.com/books/content?id={book['id']}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
 
                 context = {
                     'form': SearchForm,
