@@ -11,6 +11,7 @@ class Book(models.Model):
         ('audio-book', 'audio book')
     ]
 
+    cover_url = models.URLField(blank=True, null=True)
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
     publisher = models.CharField(max_length=255)
