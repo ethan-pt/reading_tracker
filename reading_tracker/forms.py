@@ -22,10 +22,7 @@ class SearchForm(forms.Form):
 class CreateForm(forms.ModelForm):
     class Meta:
         model = Book
-        exclude = [
-            'cover_url', 
-            'gbooks_id'
-        ]
+        fields = '__all__'
         labels = {
             'length_pages': 'Length',
             'length_time': 'Length'
