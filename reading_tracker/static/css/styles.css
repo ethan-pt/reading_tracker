@@ -111,6 +111,7 @@ input {
     padding: 10px;
 }
 
+#create-form,
 #search-form {
     display: flex;
     justify-content: center;
@@ -191,6 +192,7 @@ ul.errorlist {
     text-align: center;
 }
 
+.create-div,
 .search-div {
     padding: 5px;
     margin: 0 0 20px;
