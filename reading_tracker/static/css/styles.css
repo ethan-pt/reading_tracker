@@ -244,3 +244,9 @@ ul.errorlist {
 .info-div h4 {
     margin: 0;
 }
+
+.create-field {
+    display: block; 
+    margin: 0 0 15px;
+    align-items: center;
+}
