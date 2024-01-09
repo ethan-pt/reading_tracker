@@ -111,7 +111,6 @@ input {
     padding: 10px;
 }
 
-#create-form,
 #search-form {
     display: flex;
     justify-content: center;
