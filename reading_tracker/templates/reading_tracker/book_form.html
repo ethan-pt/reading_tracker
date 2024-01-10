@@ -7,14 +7,52 @@
 </div>
 
 <div class="card-body">
-    <form method="POST" action="">
-        {% csrf_token %}
-        {{form.as_p}}
+    <div style="padding: 5px;">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div style="display: none;">
+                {{ form.cover_url }}
+                {{ form.gbooks_id }}
+            </div>
 
-        <input class="button" type="submit" value="Submit">
-    </form>
+            <div class="create-field">
+                {{ form.title.label }}
+                {{ form.title }}
+            </div>
+
+            <div class="create-field">
+                {{ form.author.label }}
+                {{ form.author }}
+            </div>
+
+            <div class="create-field">
+                {{ form.publisher.label }}
+                {{ form.publisher }}
+            </div>
+
+            <div class="create-field">
+                {{ form.description.label }}
+                {{ form.description }}
+            </div>
+
+            <div id="book_type" class="create-field">
+                {{ form.book_type.label }}
+                {{ form.book_type }}
+            </div>
+
+            <div id="length_pages">
+                {{ form.length_pages.label }}
+                {{ form.length_pages }}
+            </div>
+
+            <div id="length_time">
+                {{ form.length_time.label }}
+                {{ form.length_time }}
+            </div>
+
+            <input class="button" type="submit" value="Submit" style="margin: 0px auto; display: block;">
+        </form>
+    </div>
 </div>
-
-<script src="{% static "js/form-script.js" %}"></script>
 
 {% endblock content %}
