@@ -55,4 +55,34 @@
     </div>
 </div>
 
+<script>
+    const bookType = document.getElementById('id_book_type');
+    const lengthPagesDiv = document.getElementById('length_pages');
+    const lengthTimeDiv = document.getElementById('length_time');
+
+    bookType.addEventListener('change', (event) => {
+        if (event.target.value == 'paper-book' || event.target.value == 'e-book') {
+            lengthPagesDiv.classList.remove('hide-create-field');
+            lengthTimeDiv.classList.remove('create-field');
+
+            lengthPagesDiv.classList.add('create-field');
+            lengthTimeDiv.classList.add('hide-create-field');
+            
+        } else if (event.target.value == 'audio-book') {
+            lengthPagesDiv.classList.remove('create-field');
+            lengthTimeDiv.classList.remove('hide-create-field');
+
+            lengthPagesDiv.classList.add('hide-create-field');
+            lengthTimeDiv.classList.add('create-field');
+
+        } else {
+            lengthPagesDiv.classList.remove('create-field');
+            lengthTimeDiv.classList.remove('create-field');
+
+            lengthPagesDiv.classList.add('hide-create-field');
+            lengthTimeDiv.classList.add('hide-create-field');
+        }
+    });
+</script>
+
 {% endblock content %}
