@@ -257,3 +257,7 @@ ul.errorlist {
     display: block; 
     margin: 0 0 15px;
 }
+
+.hide-create-field {
+    display: none;
+}
