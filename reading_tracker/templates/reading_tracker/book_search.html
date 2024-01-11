@@ -29,29 +29,30 @@ oclc: Returns results where the text following this keyword is the Online Comput
     </div>
 
     <div id="content">
-        {% if success_bool %}
-            <p id="book-count">{{ book_count }} book{{ book_count|pluralize:"s" }} found</p>
+        {% if book_request_bool %}
+            {% if books %}
+                <p id="book-count">{{ book_count }} book{{ book_count|pluralize:"s" }} found</p>
 
-            {% for book in books %}
-                <form method="POST" action="" class="result-form" name="result-form">
-                    {% csrf_token %}
-                    <input type="hidden" value="{{ book }}" name="book_data">
-                    <div class="results-div" onclick="document.forms['result-form'].submit();">
-                        <div class="cover-div">
-                            <img class="cover-img" src="{{ book.volumeInfo.coverUrl }}" alt="{% static 'img/icon-image-not-found.jpg' %}">
+                {% for book in books %}
+                    <form method="POST" action="" class="result-form" name="result-form">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ book }}" name="book_data">
+                        <div class="results-div" onclick="document.forms['result-form'].submit();">
+                            <div class="cover-div">
+                                <img class="cover-img" src="{{ book.volumeInfo.coverUrl }}" alt="{% static 'img/icon-image-not-found.jpg' %}">
+                            </div>
+
+                            <div class="info-div">
+                                <h4>{{ book.volumeInfo.title }}</h4>
+                                <p>by: {{ book.volumeInfo.authors }}</p>
+                            </div>
                         </div>
-
-                        <div class="info-div">
-                            <h4>{{ book.volumeInfo.title }}</h4>
-                            <p>by: {{ book.volumeInfo.authors }}</p>
-                        </div>
-                    </div>
-                </form>
-            {% endfor %}
-
-        {% else %}
-            <h4 class="not-found-msg">Something went wrong, try again later</h4>
-
+                    </form>
+                {% endfor %}
+            {% else %}
+                <h4 class="not-found-msg">Something went wrong, try again later</h4>
+                
+            {% endif %}
         {% endif %}
     </div>
 </div>
