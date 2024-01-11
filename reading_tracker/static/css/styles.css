@@ -55,16 +55,16 @@ textarea {
 }
 
 .budget-items-wrapper {
-    padding: 20px;
+    padding: 0px 20px 20px;
     display: flex;
+    border-top: 1px solid #dfe4ea;
 }
 
 .transaction-wrapper {
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 20px 0px;
     background-color: #fff;
-    border-top: 1px solid #dfe4ea;
     overflow: hidden;
     margin: auto;
 }
@@ -112,7 +112,7 @@ textarea {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 10px 20px;
 }
 
 #search-form {
@@ -198,6 +198,7 @@ ul.errorlist {
 
 .not-found-msg {
     text-align: center;
+    margin: 0;
 }
 
 .search-div {
