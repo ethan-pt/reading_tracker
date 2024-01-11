@@ -4,7 +4,6 @@
 <div class="header-bar">
     <div>
         <h1>Hi, <a href="{% url 'reader' %}">{{request.user|title}}</a></h1>
-        <h3 style="margin:0">{{ finished_count }} book{{ finished_count|pluralize:"s" }} read in {{ current_year }}</h3>
     </div>
 
     {% if request.user.is_authenticated %}
