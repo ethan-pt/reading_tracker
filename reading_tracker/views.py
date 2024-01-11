@@ -75,7 +75,7 @@ class ReaderSearch(LoginRequiredMixin, FormView):
             response = requests.get(api_url)
             data = response.json()
 
-            # if request is successful, return request data
+            # if request is successful, return books using context vars
             if response.status_code == 200 and data.get('totalItems'):
                 book_count = data.get('totalItems')
                 books = data.get('items')
@@ -92,7 +92,7 @@ class ReaderSearch(LoginRequiredMixin, FormView):
 
                 context = {
                     'form': SearchForm,
-                    'success_bool': True, # tells front end whether or not search request was successful
+                    'book_request_bool': True, # tells front end whether or not search request was attempted
                     'book_count': book_count,
                     'books': books,
                 }
@@ -108,7 +108,7 @@ class ReaderSearch(LoginRequiredMixin, FormView):
         # return false success bool so front end knows to display error message
         context = {
             'form': SearchForm,
-            'success_bool': False,
+            'book_request_bool': False,
         }
 
         return render(self.request, self.template_name, context)
