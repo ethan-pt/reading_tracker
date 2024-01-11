@@ -105,7 +105,7 @@ class ReaderSearch(LoginRequiredMixin, FormView):
 
             return HttpResponseRedirect(reverse_lazy('book-create'))
         
-        # return false success bool so front end knows to display error message
+        # return default search view page if form isn't recognized
         context = {
             'form': SearchForm,
             'book_request_bool': False,
