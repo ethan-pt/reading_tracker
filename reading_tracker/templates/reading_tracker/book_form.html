@@ -56,13 +56,18 @@
 </div>
 
 <script>
-    const bookType = document.getElementById('id_book_type');
+    const bookTypeField = document.getElementById('id_book_type');
+    const lengthPagesField = document.getElementById('id_length_pages');
+    const lengthTimeField = document.getElementById('id_length_time');
     const lengthPagesDiv = document.getElementById('length_pages');
     const lengthTimeDiv = document.getElementById('length_time');
 
-    // show/hide length fields depending on book type
-    bookType.addEventListener('change', (event) => {
+    // show/hide length fields depending on book type, making field required as necessary
+    bookTypeField.addEventListener('change', (event) => {
         if (event.target.value == 'paper-book' || event.target.value == 'e-book') {
+            lengthPagesField.required = true;
+            lengthTimeField.required = false;
+
             lengthPagesDiv.classList.remove('hide-create-field');
             lengthTimeDiv.classList.remove('create-field');
 
@@ -70,6 +75,9 @@
             lengthTimeDiv.classList.add('hide-create-field');
             
         } else if (event.target.value == 'audio-book') {
+            lengthPagesField.required = false;
+            lengthTimeField.required = true;
+            
             lengthPagesDiv.classList.remove('create-field');
             lengthTimeDiv.classList.remove('hide-create-field');
 
