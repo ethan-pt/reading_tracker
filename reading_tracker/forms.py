@@ -24,6 +24,7 @@ class CreateForm(forms.ModelForm):
         model = Book
         fields = '__all__'
         labels = {
-            'length_pages': 'Length',
-            'length_time': 'Length'
+            'book_type': 'What kind of book is it?',
+            'length_pages': 'How many pages does it have?',
+            'length_time': 'How long is it?'
         }
