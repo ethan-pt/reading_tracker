@@ -23,7 +23,7 @@
         <input class="button" type="submit" value="Search">
     </form>
 
-    <a id="add-link" href="{% url 'book-search' %}">&#x2b</a>
+    <a id="add-link" href="{% url 'book-search' %}" title="Add a new book">&#x2b</a>
 </div>
 
 <div class="budget-items-wrapper">
@@ -64,7 +64,7 @@
 
     {% else %}
     <div class="transaction-wrapper">
-        <h3 class="not-found-msg">No books found</h3>
+        <h3 class="not-found-msg">Looks like you don't have any books yet. Add some with the plus button above!</h3>
     </div>
     
     {% endif %}
