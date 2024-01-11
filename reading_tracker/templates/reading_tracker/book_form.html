@@ -60,6 +60,7 @@
     const lengthPagesDiv = document.getElementById('length_pages');
     const lengthTimeDiv = document.getElementById('length_time');
 
+    // show/hide length fields depending on book type
     bookType.addEventListener('change', (event) => {
         if (event.target.value == 'paper-book' || event.target.value == 'e-book') {
             lengthPagesDiv.classList.remove('hide-create-field');
