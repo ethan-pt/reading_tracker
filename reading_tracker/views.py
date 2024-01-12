@@ -132,6 +132,8 @@ class ReaderCreate(LoginRequiredMixin, CreateView):
             gbooks_id = book_data['id']
             length_pages = book_data['volumeInfo'].get('pageCount', 0)
 
+            self.request.session.pop('book_data')
+
             return {
                 'title': title,
                 'author': author,
