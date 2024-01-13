@@ -30,6 +30,10 @@ oclc: Returns results where the text following this keyword is the Online Comput
 
     <div id="content">
         {% if book_request_bool %}
+            <script>
+                // adjust searchform margin based on whether or not content div has contents
+                document.getElementsByClassName('search-div')[0].style.margin = '0 0 20px';
+            </script>
             {% if books %}
                 <p id="book-count">{{ book_count }} book{{ book_count|pluralize:"s" }} found</p>
 
