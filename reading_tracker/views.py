@@ -125,6 +125,7 @@ class ReaderCreate(LoginRequiredMixin, CreateView):
             book_data_str = self.request.session['book_data']
             book_data = ast.literal_eval(book_data_str)
 
+            cover_url = book_data['volumeInfo'].get('coverUrl', '')
             title = book_data['volumeInfo'].get('title', '')
             author = book_data['volumeInfo'].get('authors', '')
             publisher = book_data['volumeInfo'].get('publisher', '')
@@ -135,6 +136,7 @@ class ReaderCreate(LoginRequiredMixin, CreateView):
             self.request.session.pop('book_data')
 
             return {
+                'cover_url': cover_url,
                 'title': title,
                 'author': author,
                 'publisher': publisher,
