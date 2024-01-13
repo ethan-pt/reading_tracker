@@ -28,3 +28,6 @@ class CreateForm(forms.ModelForm):
             'length_pages': 'How many pages does it have?',
             'length_time': 'How long is it?'
         }
+        widgets = {
+            'length_time': forms.TextInput(attrs={'placeholder': 'HH:MM:SS'})
+        }
