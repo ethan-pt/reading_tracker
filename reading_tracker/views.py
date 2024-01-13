@@ -51,16 +51,15 @@ class ReaderRegister(FormView):
 
 
 class ReaderList(LoginRequiredMixin, ListView):
-    model = ReadingStatus
-    context_object_name = 'statuses'
+    model = Book
+    context_object_name = 'books'
 
     def get_queryset(self):
         return ReadingStatus.objects.filter(user=self.request.user)
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['statuses'] = context['statuses'].filter(user=self.request.user)
-        context['books'] = [status.book for status in context['statuses']]
+        context['books'] = context['books'].filter(user=self.request.user)
         return context
 
 
