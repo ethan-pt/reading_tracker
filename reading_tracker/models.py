@@ -11,6 +11,7 @@ class Book(models.Model):
         ('audio-book', 'audio book')
     ]
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     cover_url = models.URLField(blank=True, null=True)
     gbooks_id = models.CharField(max_length=12, unique=True, blank=True, null=True)
     title = models.CharField(max_length=255)
