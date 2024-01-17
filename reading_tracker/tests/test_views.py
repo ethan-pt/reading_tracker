@@ -137,7 +137,7 @@ class ReaderListViewTest(TestCase):
         response = self.client.get(reverse('reader'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'reading_tracker/readingstatus_list.html')
-        self.assertIn('reading_statuses', response.context)
+        self.assertIn('books', response.context)
         self.assertContains(response, 'Test Book 1')
         self.assertContains(response, 'Test Book 2')
 
