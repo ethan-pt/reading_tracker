@@ -102,6 +102,7 @@ class ReaderListViewTest(TestCase):
         self.client.login(username='testuser', password='testpassword')
 
         self.book_1 = Book.objects.create(
+            user=self.user,
             title='Test Book 1',
             author='Test Author',
             publisher='Test Publisher',
@@ -110,6 +111,7 @@ class ReaderListViewTest(TestCase):
             length_pages=200
         )
         self.book_2 = Book.objects.create(
+            user=self.user,
             title='Test Book 2',
             author='Test Author',
             publisher='Test Publisher',

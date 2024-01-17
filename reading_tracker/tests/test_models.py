@@ -13,6 +13,7 @@ class BookModelTest(TestCase):
         """
         self.user = User.objects.create_user(username='testuser', password='testpassword')
         self.book = Book.objects.create(
+            user=self.user,
             title='Test Book',
             author='Test Author',
             publisher='Test Publisher',
@@ -27,6 +28,7 @@ class BookModelTest(TestCase):
         book.book_type = 'paper-book'
         book.length_pages = 200
 
+        self.assertEqual(book.user, self.user)
         self.assertEqual(book.title, 'Test Book')
         self.assertEqual(book.author, 'Test Author')
         self.assertEqual(book.publisher, 'Test Publisher')
@@ -42,6 +44,7 @@ class BookModelTest(TestCase):
         book = self.book
         book.book_type = 'e-book'
 
+        self.assertEqual(book.user, self.user)
         self.assertEqual(book.title, 'Test Book')
         self.assertEqual(book.author, 'Test Author')
         self.assertEqual(book.publisher, 'Test Publisher')
@@ -61,6 +64,7 @@ class BookModelTest(TestCase):
             minutes=30,
         )
 
+        self.assertEqual(book.user, self.user)
         self.assertEqual(book.title, 'Test Book')
         self.assertEqual(book.author, 'Test Author')
         self.assertEqual(book.publisher, 'Test Publisher')
@@ -76,6 +80,7 @@ class ReadingStatusTest(TestCase):
         """
         self.user = User.objects.create_user(username='testuser', password='testpassword')
         self.book = Book.objects.create(
+            user=self.user,
             title='Test Book',
             author='Test Author',
             publisher='Test Publisher',
@@ -128,6 +133,7 @@ class ReadingProgressTest(TestCase):
         """
         self.user = User.objects.create_user(username='testuser', password='testpassword')
         self.book = Book.objects.create(
+            user=self.user,
             title='Test Book',
             author='Test Author',
             publisher='Test Publisher',
