@@ -22,7 +22,7 @@ class SearchForm(forms.Form):
 class CreateForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = '__all__'
+        exclude = ['user']
         labels = {
             'book_type': 'What kind of book is it?',
             'length_pages': 'How many pages does it have?',
