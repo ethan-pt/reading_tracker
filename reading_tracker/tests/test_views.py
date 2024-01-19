@@ -109,7 +109,8 @@ class ReaderListViewTest(TestCase):
             publisher='Test Publisher',
             gbooks_id='123456789012',
             book_type='paper-book',
-            length_pages=200
+            length_pages=200,
+            status='reading'
         )
         self.book_2 = Book.objects.create(
             user=self.user,
@@ -117,7 +118,9 @@ class ReaderListViewTest(TestCase):
             author='Test Author',
             publisher='Test Publisher',
             gbooks_id='012345678901',
-            book_type='e-book'
+            book_type='e-book',
+            length_pages=200,
+            status='finished'
         )
 
     def test_validated_access(self):
