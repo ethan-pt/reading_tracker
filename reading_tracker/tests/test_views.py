@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.urls import reverse
-from ..models import Book, ReadingStatus, ReadingProgress
+from ..models import Book, ReadingProgress
 from ..forms import CreateForm
 
 
