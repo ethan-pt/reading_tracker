@@ -26,7 +26,8 @@ class CreateForm(forms.ModelForm):
         labels = {
             'book_type': 'What kind of book is it?',
             'length_pages': 'How many pages does it have?',
-            'length_time': 'How long is it?'
+            'length_time': 'How long is it?',
+            'status': 'Reading status'
         }
         widgets = {
             'length_time': forms.TextInput(attrs={'placeholder': 'HH:MM:SS'})
