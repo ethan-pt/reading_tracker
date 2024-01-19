@@ -152,7 +152,7 @@ class ReaderListViewTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('login') + '?next=' + reverse('reader'))
 
-class ReaderSearchView(TestCase):
+class ReaderSearchViewTest(TestCase):
     def setUp(self):
         """
         create test user
