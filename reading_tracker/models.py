@@ -10,6 +10,12 @@ class Book(models.Model):
         ('e-book', 'e-book'),
         ('audio-book', 'audio book')
     ]
+    STATUS_CHOICES = [
+        ('reading', 'Reading'),
+        ('finished', 'Finished!'),
+        ('gave-up', 'Gave Up'),
+        ('want-to-read', 'Want to Read'),
+    ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     cover_url = models.URLField(blank=True, null=True)
@@ -21,17 +27,6 @@ class Book(models.Model):
     book_type = models.CharField(choices=BOOK_TYPE_CHOICES)
     length_pages = models.PositiveIntegerField(blank=True, null=True)
     length_time = models.DurationField(blank=True, null=True)
-
-class ReadingStatus(models.Model):
-    STATUS_CHOICES = [
-        ('reading', 'Reading'),
-        ('finished', 'Finished!'),
-        ('gave-up', 'Gave Up'),
-        ('want-to-read', 'Want to Read'),
-    ]
-
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)
 
 class ReadingProgress(models.Model):
