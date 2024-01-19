@@ -119,17 +119,6 @@ class ReaderListViewTest(TestCase):
             gbooks_id='012345678901',
             book_type='e-book'
         )
-        
-        self.reading_status_1 = ReadingStatus.objects.create(
-            user=self.user,
-            book=self.book_1,
-            status='reading'
-        )
-        self.reading_status_2 = ReadingStatus.objects.create(
-            user=self.user,
-            book=self.book_2,
-            status='finished'
-        )
 
     def test_validated_access(self):
         """
