@@ -126,6 +126,17 @@ class ReaderListViewTest(TestCase):
             status='finished'
         )
 
+        self.progress_1 = ReadingProgress.objects.create(
+            user=self.user,
+            book=self.book_1,
+            current_page=145
+        )
+        self.progress_2 = ReadingProgress.objects.create(
+            user=self.user,
+            book=self.book_2,
+            current_time='02:25:07'
+        )
+
     def test_validated_access(self):
         """
         Tests that authenticated users can access list view, checks response status code, template, and context data, and verifies that user's reading statuses are displayed
@@ -152,7 +163,6 @@ class ReaderListViewTest(TestCase):
         books = response.context['books']
         self.assertIn(self.book_1, books)
         self.assertIn(self.book_2, books)
-
 
 class ReaderSearchViewTest(TestCase):
     def setUp(self):
