@@ -54,9 +54,6 @@ class ReaderList(LoginRequiredMixin, ListView):
     model = Book
     context_object_name = 'books'
 
-    def get_queryset(self):
-        return Book.objects.filter(user=self.request.user)
-    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['books'] = context['books'].filter(user=self.request.user)
