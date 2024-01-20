@@ -159,9 +159,14 @@ class ReaderListViewTest(TestCase):
         tests for context data passed to template
         """
         response = self.client.get(reverse('reader'))
+
         books = response.context['books']
         self.assertIn(self.book_1, books)
         self.assertIn(self.book_2, books)
+
+        progress = response.context['progress']
+        self.assertIn(self.progress_1, progress)
+        self.assertIn(self.progress_2, progress)
 
 class ReaderSearchViewTest(TestCase):
     def setUp(self):
