@@ -1,4 +1,3 @@
-from datetime import timedelta
 from django.test import TestCase
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
@@ -122,7 +121,7 @@ class ReaderListViewTest(TestCase):
             description='Test Description',
             gbooks_id='012345678901',
             book_type='audio-book',
-            length_time=timedelta(hours=2, minutes=25, seconds=7),
+            length_time='02:25:07',
             status='finished'
         )
 
