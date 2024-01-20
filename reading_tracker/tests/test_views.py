@@ -291,3 +291,28 @@ class ReaderCreateViewTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('reader'))
         self.assertTrue(Book.objects.filter(user=self.user, gbooks_id='test123').exists())
+
+    def test_form_submission_time(self):
+        """
+        tests if form submits time book successfully and if book is in database
+        """
+        form_data = {
+            'cover_url': 'http://example.com/cover.jpg',
+            'title': 'Test Book',
+            'author': 'Test Author',
+            'publisher': 'Test Publisher',
+            'description': 'Test Description',
+            'gbooks_id': 'test123',
+            'book_type': 'audio-book',
+            'length_pages': '',
+            'length_time': '02:25:07',
+            'status': 'finished'
+        }
+
+        form = CreateForm(data=form_data)
+        self.assertTrue(form.is_valid())
+
+        response = self.client.post(reverse('book-create'), data=form_data)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('reader'))
+        self.assertTrue(Book.objects.filter(user=self.user, gbooks_id='test123').exists())
