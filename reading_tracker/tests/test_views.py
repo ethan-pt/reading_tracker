@@ -211,6 +211,7 @@ class ReaderCreateViewTest(TestCase):
         self.assertIn('book_type', form.fields)
         self.assertIn('length_pages', form.fields)
         self.assertIn('length_time', form.fields)
+        self.assertIn('status', form.fields)
 
     def test_with_session_data(self):
         """
@@ -227,7 +228,8 @@ class ReaderCreateViewTest(TestCase):
             'publisher': 'Test Publisher',
             'description': 'Test Description',
             'length_pages': 200,
-            'gbooks_id': 'test123'
+            'gbooks_id': 'test123',
+            'status': 'finished'
         }
         form = CreateForm(initial=form_data)
         self.assertEqual(form.initial['cover_url'], form_data['cover_url'])
@@ -237,6 +239,7 @@ class ReaderCreateViewTest(TestCase):
         self.assertEqual(form.initial['description'], form_data['description'])
         self.assertEqual(form.initial['length_pages'], form_data['length_pages'])
         self.assertEqual(form.initial['gbooks_id'], form_data['gbooks_id'])
+        self.assertEqual(form.initial['status'], form_data['status'])
 
     def test_without_session_data(self):
         """
@@ -252,6 +255,7 @@ class ReaderCreateViewTest(TestCase):
         self.assertIsNone(form.initial.get('description'))
         self.assertIsNone(form.initial.get('length_pages'))
         self.assertIsNone(form.initial.get('length_time'))
+        self.assertIsNone(form.initial.get('status'))
 
     def test_form_submission(self):
         """
@@ -266,7 +270,8 @@ class ReaderCreateViewTest(TestCase):
             'gbooks_id': 'test123',
             'length_pages': 200,
             'book_type': 'paper-book',
-            'length_time': ''
+            'length_time': '',
+            'status': 'finished'
         }
 
         form = CreateForm(data=form_data)
