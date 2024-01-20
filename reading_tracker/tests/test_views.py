@@ -267,7 +267,7 @@ class ReaderCreateViewTest(TestCase):
         self.assertIsNone(form.initial.get('length_time'))
         self.assertIsNone(form.initial.get('status'))
 
-    def test_form_submission(self):
+    def test_form_submission_pages(self):
         """
         tests if form submits successfully and if book is in database
         """
@@ -285,12 +285,9 @@ class ReaderCreateViewTest(TestCase):
         }
 
         form = CreateForm(data=form_data)
-        if form.is_valid():
-            response = self.client.post(reverse('book-create'), data=form_data)
-            self.assertEqual(response.status_code, 302)
-            self.assertRedirects(response, reverse('reader'))
-            self.assertTrue(Book.objects.filter(user=self.user, gbooks_id='test123').exists())
+        self.assertTrue(form.is_valid())
 
-        else:
-            print(form.errors)
-            self.fail("Form is not valid")
+        response = self.client.post(reverse('book-create'), data=form_data)
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('reader'))
+        self.assertTrue(Book.objects.filter(user=self.user, gbooks_id='test123').exists())
