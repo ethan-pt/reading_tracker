@@ -269,7 +269,7 @@ class ReaderCreateViewTest(TestCase):
 
     def test_form_submission_pages(self):
         """
-        tests if form submits successfully and if book is in database
+        tests if form submits page book successfully and if book is in database
         """
         form_data = {
             'cover_url': 'http://example.com/cover.jpg',
