@@ -143,6 +143,16 @@ class ReaderListViewTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('login') + '?next=' + reverse('reader'))
 
+    def test_context_data(self):
+        """
+        tests for context data passed to template
+        """
+        response = self.client.get(reverse('reader'))
+        books = response.context['books']
+        self.assertIn(self.book_1, books)
+        self.assertIn(self.book_2, books)
+
+
 class ReaderSearchViewTest(TestCase):
     def setUp(self):
         """
