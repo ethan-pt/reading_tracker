@@ -226,6 +226,14 @@ ul.errorlist {
     transition: all 150ms;
 }
 
+.book-item {
+    display: flex;
+    align-items: start;
+    padding: 5px;
+    border-top: 1px solid #dfe4ea;
+    border-radius: 5px;
+}
+
 .cover-div {
     background-color: #fff;
     border: 1px solid #dfe4ea;
