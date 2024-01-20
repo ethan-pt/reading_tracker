@@ -278,8 +278,8 @@ class ReaderCreateViewTest(TestCase):
             'publisher': 'Test Publisher',
             'description': 'Test Description',
             'gbooks_id': 'test123',
-            'length_pages': 200,
             'book_type': 'paper-book',
+            'length_pages': 200,
             'length_time': '',
             'status': 'finished'
         }
