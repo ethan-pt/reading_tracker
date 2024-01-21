@@ -249,6 +249,11 @@ ul.errorlist {
     margin: auto;
 }
 
+.book-item > .info-div p {
+    margin: 0;
+    font-size: smaller;
+}
+
 .info-div {
     flex-direction: column;
     margin: 5px;
