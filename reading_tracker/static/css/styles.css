@@ -234,6 +234,11 @@ ul.errorlist {
     border-radius: 5px;
 }
 
+.book-item > .info-div p {
+    margin: 0;
+    font-size: smaller;
+}
+
 .cover-div {
     background-color: #fff;
     border: 1px solid #dfe4ea;
@@ -247,11 +252,6 @@ ul.errorlist {
     width: auto;
     display: block;
     margin: auto;
-}
-
-.book-item > .info-div p {
-    margin: 0;
-    font-size: smaller;
 }
 
 .info-div {
