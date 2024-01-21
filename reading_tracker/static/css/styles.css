@@ -230,7 +230,6 @@ ul.errorlist {
     display: flex;
     align-items: start;
     padding: 5px;
-    border-top: 1px solid #dfe4ea;
     border-radius: 5px;
 }
 
