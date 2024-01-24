@@ -26,7 +26,7 @@
     <a id="add-link" href="{% url 'book-search' %}" title="Add a new book">&#x2b</a>
 </div>
 
-<div class="budget-items-wrapper">
+<div class="book-items-wrapper">
     {% if books %}
         {% for book in books %}
             {{ book.title }}
