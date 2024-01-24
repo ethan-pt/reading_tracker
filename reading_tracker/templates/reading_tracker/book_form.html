@@ -10,7 +10,7 @@
     <div style="padding: 5px;">
         <form method="POST" action="">
             {% csrf_token %}
-            <div class="hide-create-field">
+            <div class="hide-field">
                 {{ form.cover_url }}
                 {{ form.gbooks_id }}
             </div>
@@ -40,12 +40,12 @@
                 {{ form.book_type }}
             </div>
 
-            <div id="length_pages" class="hide-create-field">
+            <div id="length_pages" class="hide-field">
                 {{ form.length_pages.label }}
                 {{ form.length_pages }}
             </div>
 
-            <div id="length_time" class="hide-create-field">
+            <div id="length_time" class="hide-field">
                 {{ form.length_time.label }}
                 {{ form.length_time }}
             </div>
@@ -73,28 +73,28 @@
             lengthPagesField.required = true;
             lengthTimeField.required = false;
 
-            lengthPagesDiv.classList.remove('hide-create-field');
+            lengthPagesDiv.classList.remove('hide-field');
             lengthTimeDiv.classList.remove('create-field');
 
             lengthPagesDiv.classList.add('create-field');
-            lengthTimeDiv.classList.add('hide-create-field');
+            lengthTimeDiv.classList.add('hide-field');
             
         } else if (event.target.value == 'audio-book') {
             lengthPagesField.required = false;
             lengthTimeField.required = true;
             
             lengthPagesDiv.classList.remove('create-field');
-            lengthTimeDiv.classList.remove('hide-create-field');
+            lengthTimeDiv.classList.remove('hide-field');
 
-            lengthPagesDiv.classList.add('hide-create-field');
+            lengthPagesDiv.classList.add('hide-field');
             lengthTimeDiv.classList.add('create-field');
 
         } else {
             lengthPagesDiv.classList.remove('create-field');
             lengthTimeDiv.classList.remove('create-field');
 
-            lengthPagesDiv.classList.add('hide-create-field');
-            lengthTimeDiv.classList.add('hide-create-field');
+            lengthPagesDiv.classList.add('hide-field');
+            lengthTimeDiv.classList.add('hide-field');
         }
     });
 </script>
