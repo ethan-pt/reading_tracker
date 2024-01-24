@@ -29,6 +29,11 @@
 <div class="book-items-wrapper">
     {% if books %}
         {% for book in books %}
+            <div class="book-item">
+                <div class="cover-div">
+                    <img class="cover-img" src="{{ book.cover_url }}" alt="{% static 'img/icon-image-not-found.jpg' %}">
+                </div>
+            </div>
         {% endfor %}
     {% else %}
         <div class="transaction-wrapper">
