@@ -33,6 +33,14 @@
                 <div class="cover-div">
                     <img class="cover-img" src="{{ book.cover_url }}" alt="{% static 'img/icon-image-not-found.jpg' %}">
                 </div>
+
+                <div class="info-div">
+                    <h4>{{ book.title }}</h4>
+
+                    <p>By {{ book.author }}</p>
+
+                    <p>Status: {{ book.status }}</p>
+                </div>
             </div>
         {% endfor %}
     {% else %}
