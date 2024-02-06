@@ -242,6 +242,7 @@ ul.errorlist {
 .book-item > .info-div p {
     margin: 0;
     font-size: smaller;
+    align-self: center;
 }
 
 .cover-div {
