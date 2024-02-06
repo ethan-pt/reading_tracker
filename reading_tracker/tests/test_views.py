@@ -99,11 +99,12 @@ class ReaderListViewTest(TestCase):
         """
         Create test user, books, and reading statuses
         """
-        self.user = User.objects.create_user(username='testuser', password='testpassword')
-        self.client.login(username='testuser', password='testpassword')
+        self.user_1 = User.objects.create_user(username='testuser_1', password='testpassword')
+        self.client.login(username='testuser_1', password='testpassword')
+        self.user_2 = User.objects.create_user(username='testuser_2', password='testpassword')
 
         self.book_1 = Book.objects.create(
-            user=self.user,
+            user=self.user_1,
             title='Test Book 1',
             author='Test Author',
             publisher='Test Publisher',
@@ -111,10 +112,11 @@ class ReaderListViewTest(TestCase):
             gbooks_id='123456789012',
             book_type='paper-book',
             length_pages=200,
+            current_page=50,
             status='reading'
         )
         self.book_2 = Book.objects.create(
-            user=self.user,
+            user=self.user_1,
             title='Test Book 2',
             author='Test Author',
             publisher='Test Publisher',
@@ -122,7 +124,19 @@ class ReaderListViewTest(TestCase):
             gbooks_id='012345678901',
             book_type='audio-book',
             length_time='02:25:07',
+            current_time='01:33:00',
             status='finished'
+        )
+        self.book_3 = Book.objects.create(
+            user=self.user_2,
+            title='Test Book 3',
+            author='Test Author',
+            publisher='Test Publisher',
+            gbooks_id='901234567890',
+            book_type='e-book',
+            length_pages=200,
+            current_page=55,
+            status='reading'
         )
 
     def test_validated_access(self):
@@ -152,10 +166,7 @@ class ReaderListViewTest(TestCase):
         books = response.context['books']
         self.assertIn(self.book_1, books)
         self.assertIn(self.book_2, books)
-
-        progress = response.context['progress']
-        self.assertIn(self.progress_1, progress)
-        self.assertIn(self.progress_2, progress)
+        self.assertNotIn(self.book_3, books)
 
 class ReaderSearchViewTest(TestCase):
     def setUp(self):
