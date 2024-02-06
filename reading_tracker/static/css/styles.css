@@ -278,6 +278,10 @@ ul.errorlist {
     margin: 0 0 15px;
 }
 
+.progress-field {
+    display: flex;
+}
+
 .hide-field {
     display: none;
 }
