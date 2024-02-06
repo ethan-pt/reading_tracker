@@ -150,6 +150,12 @@ textarea {
     display: block;
 }
 
+#id_current_page, #id_current_time {
+    height: 0px;
+    width: 45px;
+    margin:0px 3px;
+}
+
 @media screen and (max-width:320px) {
     #search-add-wrapper {
         padding: 10px;
