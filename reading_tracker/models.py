@@ -28,10 +28,6 @@ class Book(models.Model):
     length_pages = models.PositiveIntegerField(blank=True, null=True)
     length_time = models.DurationField(blank=True, null=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES)
-
-class ReadingProgress(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    current_page = models.PositiveIntegerField(blank=True, null=True)
-    current_time = models.DurationField(blank=True, null=True)
+    current_page = models.PositiveIntegerField(blank=True, null=True, default=0)
+    current_time = models.DurationField(blank=True, null=True, default=timedelta)
     last_updated = models.DateTimeField(auto_now=True)
