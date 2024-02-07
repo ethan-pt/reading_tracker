@@ -32,3 +32,11 @@ class CreateForm(forms.ModelForm):
         widgets = {
             'length_time': forms.TextInput(attrs={'placeholder': 'HH:MM:SS'})
         }
+
+
+class ProgressForm(forms.Form):
+    id = forms.IntegerField()
+    current_page = forms.IntegerField()
+    current_time = forms.DurationField(
+        widget=forms.TextInput(attrs={'placeholder': 'HH:MM:SS'})
+    )
