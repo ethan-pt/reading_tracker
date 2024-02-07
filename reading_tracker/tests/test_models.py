@@ -32,7 +32,7 @@ class BookModelTest(TestCase):
         self.assertEqual(self.book.current_page, 0)
 
     def test_current_time_default(self):
-        self.assertEqual(self.book.current_time, timedelta)
+        self.assertEqual(self.book.current_time, timedelta(0))
 
     def test_last_updated(self):
         old_last_updated = self.book.last_updated
