@@ -173,7 +173,7 @@ class ReaderCreate(LoginRequiredMixin, CreateView):
 
 class ReaderUpdate(LoginRequiredMixin, UpdateView):
     model = Book
-    fields = ['title', 'description', 'complete', 'current_page', 'total_pages', 'date_started', 'date_finished']
+    fields = ['title', 'author', 'publisher', 'description', 'book_type', 'length_pages', 'length_time', 'status', 'current_page', 'current_time']
     success_url = reverse_lazy('reader')
 
 
