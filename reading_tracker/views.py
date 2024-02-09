@@ -131,6 +131,7 @@ class ReaderSearch(LoginRequiredMixin, FormView):
 
 
 class ReaderCreate(LoginRequiredMixin, CreateView):
+    template_name = 'reading_tracker/book_create.html'
     model = Book
     form_class = CreateForm
     success_url = reverse_lazy('reader')
