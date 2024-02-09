@@ -50,14 +50,16 @@ class ReaderRegister(FormView):
         return super(ReaderRegister, self).get(*args, **kwargs)
 
 
-class ReaderList(LoginRequiredMixin, ListView):
+class ReaderList(LoginRequiredMixin, FormView):
     model = Book
-    context_object_name = 'books'
+    template_name = 'reading_tracker/book_list.html'
+    form_class = ProgressForm
+    fields = ['current_page', 'current_time']
+    success_url = reverse_lazy('reader')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['books'] = context['books'].filter(user=self.request.user)
-        context['progress'] = ReadingProgress.objects.filter(user=self.request.user)
+        context['books'] = Book.objects.filter(user=self.request.user)
         return context
 
 
