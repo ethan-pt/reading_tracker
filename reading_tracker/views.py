@@ -60,6 +60,14 @@ class ReaderList(LoginRequiredMixin, FormView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['books'] = Book.objects.filter(user=self.request.user)
+
+        for book in context['books']:
+            setattr(book, 'progress_form', ProgressForm(initial={
+                'id': book.pk,
+                'current_page': book.current_page,
+                'current_time': book.current_time
+            }))
+
         return context
 
 
