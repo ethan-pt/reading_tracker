@@ -69,6 +69,14 @@ class ReaderList(LoginRequiredMixin, FormView):
             }))
 
         return context
+    
+    def form_valid(self, form):
+        book_id = self.request.POST.get('id')
+        posted_page = self.request.POST.get('current_page')
+        posted_time = self.request.POST.get('current_time')
+        Book.objects.filter(user=self.request.user, pk=book_id).update(current_page=posted_page, current_time=posted_time)
+
+        return super().form_valid(form)
 
 
 class ReaderSearch(LoginRequiredMixin, FormView):
