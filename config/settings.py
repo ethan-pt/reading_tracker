@@ -97,6 +97,7 @@ CORS_ALLOWED_ORIGINS = [
     'https://www.googleapis.com',
     'https://books.google.com',
     'http://127.0.0.1:8080',
+    'https://imgur.com',
 ]
 
 
