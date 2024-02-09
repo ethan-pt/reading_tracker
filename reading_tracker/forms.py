@@ -36,7 +36,12 @@ class CreateForm(forms.ModelForm):
 
 class ProgressForm(forms.Form):
     id = forms.IntegerField()
-    current_page = forms.IntegerField()
+    current_page = forms.IntegerField(
+        widget=forms.NumberInput(attrs={'onchange': 'document.forms["progress-form"].submit()'})
+    )
     current_time = forms.DurationField(
-        widget=forms.TextInput(attrs={'placeholder': 'HH:MM:SS'})
+        widget=forms.TextInput(attrs={
+            'placeholder': 'HH:MM:SS',
+            'onchange': 'document.forms["progress-form"].submit()'
+        })
     )
