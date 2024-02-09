@@ -40,6 +40,41 @@
                     <p>By: {{ book.author }}</p>
 
                     <p>Status: {{ book.status }}</p>
+
+                    <form method="POST" action="" class="progress-form" name="progress-form">
+                        {% csrf_token %}
+                        <div class="hide-field">
+                            {{ book.progress_form.id }}
+                        </div>
+
+                        {% if book.book_type == "audio-book" %}
+                            <div class="hide-field">
+                                <p>Current page:</p>
+                                {{ book.progress_form.current_page }}
+                                <p>/ {{ book.length_pages }}</p>
+                            </div>
+
+                            <div class="progress-field">
+                                <p>Current time:</p>
+                                {{ book.progress_form.current_time }}
+                                <p>/ {{ book.length_time }}</p>
+                            </div>
+
+                        {% elif book.book_type == "paper-book" or book.book_type == 'e-book' %}
+                            <div class="progress-field">
+                                <p>Current page:</p>
+                                {{ book.progress_form.current_page }}
+                                <p>/ {{ book.length_pages }}</p>
+                            </div>
+
+                            <div class="hide-field">
+                                <p>Current time:</p>
+                                {{ book.progress_form.current_time }}
+                                <p>/ {{ book.length_time }}</p>
+                            </div>
+
+                        {% endif %}
+                    </form>
                 </div>
             </div>
         {% endfor %}
