@@ -1,0 +1,166 @@
+{% extends 'reading_tracker/main.html' %}
+{% block content %}
+{% load static %}
+
+<div class="header-bar">
+    <a href="{% url 'book-search' %}">&#8592; Back</a>
+</div>
+
+<div class="card-body">
+    <div style="padding: 5px;">
+        <form method="POST" action="" name="update-form">
+            {% csrf_token %}
+            <div class="create-field">
+                {{ form.title.label }}
+                {{ form.title }}
+            </div>
+
+            <div class="create-field">
+                {{ form.author.label }}
+                {{ form.author }}
+            </div>
+
+            <div class="create-field">
+                {{ form.publisher.label }}
+                {{ form.publisher }}
+            </div>
+
+            <div class="create-field">
+                {{ form.description.label }}
+                {{ form.description }}
+            </div>
+
+            <div class="create-field">
+                {{ form.book_type.label }}
+                {{ form.book_type }}
+            </div>
+
+            {% if book.book_type == "audio-book" %}
+                <div id="length_pages" class="hide-field">
+                    {{ form.length_pages.label }}
+                    {{ form.length_pages }}
+                </div>
+
+                <div id="length_time" class="create-field">
+                    {{ form.length_time.label }}
+                    {{ form.length_time }}
+                </div>
+
+                <div id="current_page" class="hide-field">
+                    {{ form.current_page.label }}
+                    {{ form.current_page }}
+                </div>
+
+                <div id="current_time" class="create-field">
+                    {{ form.current_time.label }}
+                    {{ form.current_time }}
+                </div>
+
+                <script>
+                    document.getElementById('id_length_time').required = true;
+                    document.getElementById('id_current_time').required = true;
+                    document.getElementById('id_length_pages').required = false;
+                    document.getElementById('id_current_page').required = false;
+                </script>
+
+            {% elif book.book_type == "paper-book" or book.book_type == "e-book" %}
+                <div id="length_pages" class="create-field">
+                    {{ form.length_pages.label }}
+                    {{ form.length_pages }}
+                </div>
+
+                <div id="length_time" class="hide-field">
+                    {{ form.length_time.label }}
+                    {{ form.length_time }}
+                </div>
+
+                <div id="current_page" class="create-field">
+                    {{ form.current_page.label }}
+                    {{ form.current_page }}
+                </div>
+
+                <div id="current_time" class="hide-field">
+                    {{ form.current_time.label }}
+                    {{ form.current_time }}
+                </div>
+
+                <script>
+                    document.getElementById('id_length_pages').required = true;
+                    document.getElementById('id_current_page').required = true;
+                    document.getElementById('id_length_time').required = false;
+                    document.getElementById('id_current_time').required = false;
+                </script>
+            {% endif %}
+
+            <div class="create-field">
+                {{ form.status.label }}
+                {{ form.status }}
+            </div>  
+
+            <input class="button" type="submit" value="Submit" style="margin: 0px auto; display: block;">
+        </form>
+    </div>
+</div>
+
+<script>
+    const bookTypeField = document.getElementById('id_book_type');
+
+    const lengthPagesField = document.getElementById('id_length_pages');
+    const lengthTimeField = document.getElementById('id_length_time');
+    const currentPageField = document.getElementById('id_current_page');
+    const currentTimeField = document.getElementById('id_current_time');
+
+    const lengthPagesDiv = document.getElementById('length_pages');
+    const lengthTimeDiv = document.getElementById('length_time');
+    const currentPageDiv = document.getElementById('current_page');
+    const currentTimeDiv = document.getElementById('current_time');
+
+    // show/hide length fields depending on book type, making field required as necessary
+    bookTypeField.addEventListener('change', (event) => {
+        if (event.target.value == 'paper-book' || event.target.value == 'e-book') {
+            lengthPagesField.required = true;
+            currentPageField.required = true;
+            lengthTimeField.required = false;
+            currentTimeField.required = false;
+
+            lengthPagesDiv.classList.remove('hide-field');
+            currentPageDiv.classList.remove('hide-field');
+            lengthTimeDiv.classList.remove('create-field');
+            currentTimeDiv.classList.remove('create-field');
+
+            lengthPagesDiv.classList.add('create-field');
+            currentTimeDiv.classList.add('create-field');
+            lengthTimeDiv.classList.add('hide-field');
+            currentTimeDiv.classList.add('hide-field');
+
+        } else if (event.target.value == 'audio-book') {
+            lengthPagesField.required = false;
+            currentPageField.required = false;
+            lengthTimeField.required = true;
+            currentTimeField.required = true;
+            
+            lengthPagesDiv.classList.remove('create-field');
+            currentPageDiv.classList.remove('create-field');
+            lengthTimeDiv.classList.remove('hide-field');
+            currentTimeDiv.classList.remove('hide-field');
+
+            lengthPagesDiv.classList.add('hide-field');
+            currentPageDiv.classList.add('hide-field');
+            lengthTimeDiv.classList.add('create-field');
+            currentTimeDiv.classList.add('create-field');
+
+        } else {
+            lengthPagesDiv.classList.remove('create-field');
+            currentPageDiv.classList.remove('create-field');
+            lengthTimeDiv.classList.remove('create-field');
+            currentTimeDiv.classList.remove('create-field');
+
+            lengthPagesDiv.classList.add('hide-field');
+            currentPageDiv.classList.add('hide-field');
+            lengthTimeDiv.classList.add('hide-field');
+            currentTimeDiv.classList.add('hide-field');
+        }
+    })
+</script>
+
+{% endblock content %}

@@ -1,4 +1,5 @@
 from datetime import timedelta
+from typing import Any
 import urllib.parse
 import requests
 import ast
@@ -172,9 +173,16 @@ class ReaderCreate(LoginRequiredMixin, CreateView):
 
 
 class ReaderUpdate(LoginRequiredMixin, UpdateView):
+    template_name = 'reading_tracker/book_update.html'
     model = Book
     fields = ['title', 'author', 'publisher', 'description', 'book_type', 'length_pages', 'length_time', 'status', 'current_page', 'current_time']
     success_url = reverse_lazy('reader')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['book'] = self.get_object()
+
+        return context
 
 
 class ReaderDelete(LoginRequiredMixin, DeleteView):
