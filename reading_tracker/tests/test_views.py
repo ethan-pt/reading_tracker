@@ -156,6 +156,13 @@ class ReaderListViewTest(TestCase):
         response = self.client.get(reverse('reader'))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('login') + '?next=' + reverse('reader'))
+    def test_search_function(self):
+        """
+        tests that search function works
+        """
+        response = self.client.get(reverse('reader') + '?search-area=Test Book 1')
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerySetEqual(response.context['books'], ['<Book: Test Book 1>'])
 
     def test_context_data(self):
         """
