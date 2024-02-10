@@ -290,3 +290,12 @@ ul.errorlist {
 .hide-field {
     display: none;
 }
+
+.delete-update-book {
+    margin-left: auto;
+}
+
+.delete-book, .edit-book {
+    display: flex;
+    padding-bottom: 5px;
+}
