@@ -69,6 +69,11 @@ class ReaderList(LoginRequiredMixin, FormView):
                 'current_time': book.current_time
             }))
 
+        # search function
+        search_input = self.request.GET.get('search-area', '')
+        if search_input:
+            context['books'] = context['books'].filter(title__icontains=search_input)
+
         return context
     
     def form_valid(self, form):
