@@ -149,14 +149,14 @@ textarea {
     display: block;
 }
 
-#id_current_page, #id_current_time {
+form[name="progress-form"] > div > #id_current_page, #id_current_time {
     height: 0px;
     width: 45px;
     margin:0px 3px;
     padding: 10px 3px;
 }
 
-input#id_current_time {
+form[name="progress-form"] > div > input#id_current_time {
     width: 52px;
 }
 
