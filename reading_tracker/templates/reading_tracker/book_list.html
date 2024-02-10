@@ -60,7 +60,7 @@
                                 <p>/ {{ book.length_time }}</p>
                             </div>
 
-                        {% elif book.book_type == "paper-book" or book.book_type == 'e-book' %}
+                        {% elif book.book_type == "paper-book" or book.book_type == "e-book" %}
                             <div class="progress-field">
                                 <p>Current page:</p>
                                 {{ book.progress_form.current_page }}
