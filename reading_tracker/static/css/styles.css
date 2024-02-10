@@ -149,7 +149,8 @@ textarea {
     display: block;
 }
 
-form[name="progress-form"] > div > #id_current_page, #id_current_time {
+form[name="progress-form"] > div > #id_current_page, 
+form[name="progress-form"] > div > #id_current_time {
     height: 0px;
     width: 45px;
     margin:0px 3px;
