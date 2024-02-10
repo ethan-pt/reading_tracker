@@ -2,44 +2,37 @@
 
   A Django application to track your reading.
 
-## Table of Contents
-
-* [Technologies Used](#technologies-used)
-* [Features](#features)
-* [Setup](#setup)
-* [To Do](#to-do)
-* [Contact](#contact)
-
 ## Technologies Used
 
-* Python 3.10.1
+* Python
+* JavaScript
 * Django
 * Google Cloud Platform (GCP)
   * Cloud Run
-  * Cloud SQL
+  * Cloud SQL (PostgreSQL)
   * Cloud Storage Buckets
   * Cloud Secrets
 * Docker
 * Gunicorn
+* Google Books API
 
 ## Features
 
-* Track number of books read in a year
-* Track current page
+* __Search Functionality__: Users can search for books by title, author, publisher, subject, ISBN, OCCN or OCLC.
+* __Book Details__: Displays comprehensive information about each book, sourced from the Google Books API, including cover images, descriptions, and publication details.
+* __Mobile Compatability__: Responsive design ensures the website is accessible and user-friendly on both desktop and mobile devices, allowing users to track their reading on the go.
+* __Reading Lists__: Allow users to create personalized reading lists to organize books they want to read, are currently reading, or have finished reading.
+* __Progress Tracking__: Enable users to track their reading progress for each book, such as marking pages read or time listened.
+* __User Profiles__: Enable users to create profiles where they can track their own individual reading history.
 
 ## Setup
 
-`$ pip install -r requirements.txt`
+This repo is currently set up to be run on Google Cloud Platform in accordance with [this documentation](https://cloud.google.com/python/django/run).
 
-## To Do
-
-* ~~Prevent current page from exceeding total pages~~
-* Sort books by column headers
-* Auto add date finished when complete bool is true
-* Swap model-level clean to be a field-level clean
+If you would like to run this program locally, you can either use the instructions provided in the docs above to utilize GCP services, or you can fork this repo and remove its GCP dependencies.
 
 ## Contact
 
-[Check out my GitHub](https://github.com/ethan-pt)
+[Check out my other projects!](https://github.com/ethan-pt)
 
-[Send me an Email](mailto:tubbeethan@gmail.com)
+[Send me an Email!](mailto:tubbeethan@gmail.com)
