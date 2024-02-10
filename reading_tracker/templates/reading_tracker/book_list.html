@@ -76,6 +76,11 @@
                         {% endif %}
                     </form>
                 </div>
+
+                <div class="delete-update-book">
+                    <a class="delete-book" href="/book-delete/{{ book.id }}"><img src="https://imgur.com/1RcmYHg" alt="Delete"></a>
+                    <a class="update-book" href="/book-update/{{ book.id }}"><img src="https://imgur.com/dwRNbU0" alt="Update"></a>
+                </div>
             </div>
         {% endfor %}
     {% else %}
