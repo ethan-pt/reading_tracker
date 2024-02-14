@@ -390,3 +390,36 @@ class ReaderUpdateViewTest(TestCase):
         response = self.client.post(reverse('book-update', kwargs={'pk': self.book.pk}), {})
         self.assertEqual(response.status_code, 200)
 
+class ReaderDeleteViewTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        self.client.login(username='testuser', password='testpassword')
+        self.book = Book.objects.create(
+            user=self.user,
+            title='Test Book',
+            author='Test Author',
+            book_type='paper-book',
+            status='reading'
+        )
+
+    def test_validated_access(self):
+        """
+        Tests that authenticated users can access delete view, checks response status code, and template
+        """
+        response = self.client.get(reverse('book-delete', kwargs={'pk': self.book.pk}))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'reading_tracker/book_confirm_delete.html')
+
+    def test_invalidated_access(self):
+        """
+        Tests accessing delete view while not logged in and checks if user is redirected to login page
+        """
+        self.client.logout()
+
+        response = self.client.get(reverse('book-delete', kwargs={'pk': self.book.pk}))
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('login') + '?next=' + reverse('book-delete', kwargs={'pk': self.book.pk}))
+
+    def test_book_deleted(self):
+        self.client.post(reverse('book-delete', kwargs={'pk': self.book.pk}))
+        self.assertFalse(Book.objects.filter(pk=self.book.pk).exists())
