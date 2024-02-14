@@ -215,7 +215,7 @@ class ReaderCreateViewTest(TestCase):
         """
         response = self.client.get(reverse('book-create'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'reading_tracker/book_form.html')
+        self.assertTemplateUsed(response, 'reading_tracker/book_create.html')
     
     def test_invalidated_access(self):
         """
