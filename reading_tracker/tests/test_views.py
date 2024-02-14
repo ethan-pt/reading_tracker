@@ -337,3 +337,56 @@ class ReaderCreateViewTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse('reader'))
         self.assertTrue(Book.objects.filter(user=self.user, gbooks_id='test123').exists())
+
+class ReaderUpdateViewTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        self.client.login(username='testuser', password='testpassword')
+        self.book = Book.objects.create(
+            user=self.user,
+            title='Test Book',
+            author='Test Author',
+            book_type='paper-book',
+            status='reading'
+        )
+
+    def test_validated_access(self):
+        """
+        Tests that authenticated users can access update view, checks response status code, and template
+        """
+        response = self.client.get(reverse('book-update', kwargs={'pk': self.book.pk}))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'reading_tracker/book_update.html')
+
+    def test_invalidated_access(self):
+        """
+        Tests accessing update view while not logged in and checks if user is redirected to login page
+        """
+        self.client.logout()
+
+        response = self.client.get(reverse('book-update', kwargs={'pk': self.book.pk}))
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, reverse('login') + '?next=' + reverse('book-update', kwargs={'pk': self.book.pk}))
+
+    def test_context_data(self):
+        response = self.client.get(reverse('book-update', kwargs={'pk': self.book.pk}))
+        self.assertEqual(response.context['book'], self.book)
+
+    def test_valid_update(self):
+        updated_title = 'New Test Book'
+
+        response = self.client.post(reverse('book-update', kwargs={'pk': self.book.pk}), {
+            'title': updated_title,
+            'author': self.book.author,
+            'book_type': self.book.book_type,
+            'status': self.book.status
+        })
+        self.assertEqual(response.status_code, 302)
+        
+        updated_book = Book.objects.get(pk=self.book.pk)
+        self.assertEqual(updated_book.title, updated_title)
+
+    def test_invalid_update(self):
+        response = self.client.post(reverse('book-update', kwargs={'pk': self.book.pk}), {})
+        self.assertEqual(response.status_code, 200)
+
