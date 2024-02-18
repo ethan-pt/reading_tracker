@@ -93,12 +93,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    'https://www.googleapis.com',
-    'https://books.google.com',
-    'http://127.0.0.1:8080',
-    'https://imgur.com',
-]
+# I know this super isn't ideal, I just really want this to work for now
+# TODO: specify allowed origins
+CORS_ALLOWED_ORIGINS = [*]
 
 
 ROOT_URLCONF = 'config.urls'
