@@ -95,7 +95,7 @@ MIDDLEWARE = [
 
 # I know this super isn't ideal, I just really want this to work for now
 # TODO: specify allowed origins
-CORS_ALLOWED_ORIGINS = [*]
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 ROOT_URLCONF = 'config.urls'
