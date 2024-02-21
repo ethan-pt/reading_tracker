@@ -1,34 +1,26 @@
 body {
-    background-color: #FAFAFA;
+    background-color: #1c1c1c;
     font-family: 'Nunito', sans-serif;
     padding-top: 50px;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Raleway', sans-serif;
+    color: #ffffff;
 }
 
-a, p, td {
-    color: #4b5156;
+a, p {
+    color: #e7edf1;
     font-weight: 600;
-}
-
-table {
-    width: 100%;
-    padding: 10px 20px;
-    border-top: 1px solid #dfe4ea;
-}
-
-tbody {
-    text-align: center;
 }
 
 .container {
     max-width: 550px;
     margin: auto;
-    background-color: #fff;
+    background-color: #3e3c43;
     -webkit-box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
     box-shadow: 2px 2px 13px -4px rgba(0, 0, 0, 0.21);
+    border-radius: 5px 5px 0 0;
 }
 
 input {
@@ -45,8 +37,8 @@ textarea {
     justify-content: space-between;
     color: #fff;
     padding: 10px;
-    border-radius: 5px 5px 0 0;
-    background-color: #1f183b;
+    border-radius: inherit;
+    background-color: #221a42;
 }
 
 .header-bar a {
@@ -56,14 +48,13 @@ textarea {
 
 .book-items-wrapper {
     padding: 20px;
-    border-top: 1px solid #dfe4ea;
+    border-top: 1px solid #8d9195;
 }
 
 .transaction-wrapper {
     display: flex;
     align-items: center;
     padding: 20px 0px;
-    background-color: #fff;
     overflow: hidden;
     margin: auto;
 }
@@ -89,19 +80,8 @@ textarea {
     cursor: grabbing;
 }
 
-.dropArea {
-    background-color: #f1f2f6;
-    color: black;
-    border: #ced6e0 1px solid;
-}
-
-.selectedTask {
-    opacity: 0.6;
-}
-
-
 #add-link {
-    color: #1f183b;
+    color: #c6ccd1;
     text-decoration: none;
     font-size: 42px;
     text-shadow: 1px 1px #1f183b;
@@ -112,6 +92,7 @@ textarea {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
+    border-top: #8d9195;
 }
 
 #search-form {
@@ -172,6 +153,7 @@ input[type=password],
 input[type=number],
 textarea,
 select {
+    background-color: #e7edf1;
     border: 1px solid #1f183b;
     border-radius: 5px;
     padding: 10px;
@@ -194,7 +176,7 @@ ul.errorlist {
 
 .button {
     border: 1px solid #1f183b;
-    background-color: #FAFAFA;
+    background-color: #c6ccd1;
     color: #1f183b;
     padding: 10px;
     font-size: 14px;
@@ -226,13 +208,13 @@ ul.errorlist {
     display: flex;
     align-items: start;
     padding: 5px;
-    border-top: 1px solid #dfe4ea;
+    border-top: 1px solid #8d9195;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .results-div:hover {
-    background-color: rgba(230, 235, 241, 0.75);
+    background-color: rgb(78 82 89 / 75%);
     box-shadow: 0 0 13px -4px rgba(0, 0, 0, 0.21);
     transition: all 150ms;
 }
@@ -251,8 +233,8 @@ ul.errorlist {
 }
 
 .cover-div {
-    background-color: #fff;
-    border: 1px solid #dfe4ea;
+    background-color: #e7edf1;
+    border: 1px solid #1f183b;
     border-radius: 5px;
     height: 80px;
     width: 80px;
@@ -263,6 +245,10 @@ ul.errorlist {
     width: auto;
     display: block;
     margin: auto;
+}
+
+.create-form, .update-form, .register-form {
+    color: white;
 }
 
 .info-div {
