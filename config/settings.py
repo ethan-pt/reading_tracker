@@ -96,7 +96,7 @@ MIDDLEWARE = [
 # I know this super isn't ideal, I just really want this to work for now
 # TODO: specify allowed origins
 CORS_ALLOW_ALL_ORIGINS = True
-CSRF_TRUSTED_ORIGINS = ['https://*.run.app', 'http://127.0.0.1:8080']
+CSRF_TRUSTED_ORIGINS = ['https://reader-service-w7xs2fk6ha-uc.a.run.app', 'http://127.0.0.1:8080']
 
 
 ROOT_URLCONF = 'config.urls'
