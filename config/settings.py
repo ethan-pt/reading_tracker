@@ -61,6 +61,7 @@ DEBUG = env('DEBUG')
 CLOUDRUN_SERVICE_URL = env('CLOUDRUN_SERVICE_URL', default=None)
 if CLOUDRUN_SERVICE_URL:
     ALLOWED_HOSTS = [urlparse(CLOUDRUN_SERVICE_URL).netloc]
+    CORS_ALLOWED_ORIGINS = [urlparse(CLOUDRUN_SERVICE_URL).netloc]
     CSRF_TRUSTED_ORIGINS = [CLOUDRUN_SERVICE_URL]
     SECURE_SSL_REDIRECT = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -92,9 +93,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-CORS_ALLOWED_ORIGINS = ['https://reader-service-w7xs2fk6ha-uc.a.run.app', 'https://127.0.0.1:8080']
-CSRF_TRUSTED_ORIGINS = ['https://reader-service-w7xs2fk6ha-uc.a.run.app', 'https://127.0.0.1:8080']
 
 
 ROOT_URLCONF = 'config.urls'
