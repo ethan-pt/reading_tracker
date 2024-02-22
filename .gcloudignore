@@ -10,3 +10,5 @@ media
 cloud-sql-proxy.x64.exe
 migrations
 README.md
+.git
+.vscode
