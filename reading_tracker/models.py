@@ -18,7 +18,7 @@ class Book(models.Model):
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    cover_url = models.URLField(blank=True, null=True, default='https://imgur.com/10PZvrp')
+    cover_url = models.URLField(blank=True, null=True, default='https://i.imgur.com/VCNdEm8.jpeg')
     gbooks_id = models.CharField(max_length=12, unique=True, blank=True, null=True)
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
